@@ -1,0 +1,21 @@
+nomad_pydantic
+==============
+
+.. py:module:: nomad_pydantic
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   nomad_pydantic.__version__
+
+
+Package Contents
+----------------
+
+.. py:data:: __version__
+   :value: '0.1.0'
+
+

@@ -1,6 +1,18 @@
 __version__ = "0.1.0"
 
-from nomad_pydantic.client import CommandResult, CommandRunner, JobStatus, NomadClient, NomadCommandError, SubprocessCommandRunner
+from nomad_pydantic.client import (
+    AllocationStatus,
+    CommandResult,
+    CommandRunner,
+    DeploymentStatus,
+    EvaluationStatus,
+    JobStatus,
+    JobSummary,
+    NomadClient,
+    NomadCommandError,
+    SubprocessCommandRunner,
+    TaskGroupStatus,
+)
 from nomad_pydantic.config import NomadConfiguration
 from nomad_pydantic.models import (
     Artifact,
@@ -27,11 +39,15 @@ from nomad_pydantic.models import (
 
 __all__ = [
     "Artifact",
+    "AllocationStatus",
     "CheckRestart",
     "CommandResult",
     "CommandRunner",
+    "DeploymentStatus",
+    "EvaluationStatus",
     "Job",
     "JobStatus",
+    "JobSummary",
     "Lifecycle",
     "LogConfig",
     "NetworkPort",
@@ -48,6 +64,7 @@ __all__ = [
     "ServiceCheck",
     "SubprocessCommandRunner",
     "Task",
+    "TaskGroupStatus",
     "TaskGroup",
     "Template",
     "UpdateStrategy",

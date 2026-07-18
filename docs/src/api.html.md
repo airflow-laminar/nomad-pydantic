@@ -30,7 +30,12 @@ The public API is re-exported from `nomad_pydantic`.
 | [`NomadConfiguration`](_build/nomad_pydantic.NomadConfiguration.md#nomad_pydantic.NomadConfiguration)                  | A Nomad job together with its local JSON artifact and CLI settings.   |
 |------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | [`NomadClient`](_build/nomad_pydantic.NomadClient.md#nomad_pydantic.NomadClient)(configuration, \*[, runner, ...])     | Manage a configuration through the installed Nomad CLI.               |
-| [`JobStatus`](_build/nomad_pydantic.JobStatus.md#nomad_pydantic.JobStatus)                                             |                                                                       |
+| [`JobStatus`](_build/nomad_pydantic.JobStatus.md#nomad_pydantic.JobStatus)                                             | Status bundle emitted by `nomad job status -json` for one job.        |
+| [`JobSummary`](_build/nomad_pydantic.JobSummary.md#nomad_pydantic.JobSummary)                                          |                                                                       |
+| [`TaskGroupStatus`](_build/nomad_pydantic.TaskGroupStatus.md#nomad_pydantic.TaskGroupStatus)                           |                                                                       |
+| [`AllocationStatus`](_build/nomad_pydantic.AllocationStatus.md#nomad_pydantic.AllocationStatus)                        |                                                                       |
+| [`DeploymentStatus`](_build/nomad_pydantic.DeploymentStatus.md#nomad_pydantic.DeploymentStatus)                        |                                                                       |
+| [`EvaluationStatus`](_build/nomad_pydantic.EvaluationStatus.md#nomad_pydantic.EvaluationStatus)                        |                                                                       |
 | [`CommandResult`](_build/nomad_pydantic.CommandResult.md#nomad_pydantic.CommandResult)(returncode, stdout, stderr)     |                                                                       |
 | [`CommandRunner`](_build/nomad_pydantic.CommandRunner.md#nomad_pydantic.CommandRunner)(\*args, \*\*kwargs)             |                                                                       |
 | [`SubprocessCommandRunner`](_build/nomad_pydantic.SubprocessCommandRunner.md#nomad_pydantic.SubprocessCommandRunner)() |                                                                       |

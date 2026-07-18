@@ -43,6 +43,12 @@ the Nomad CLI. Separating these layers allows rendering and validation without a
 cluster and allows lifecycle tests to replace process execution with a fake
 runner.
 
+`nomad job status -json` combines the job summary with allocations, the latest
+deployment, and evaluations. `JobStatus` preserves that structure. Its
+`running`, `complete`, `failed`, and `stopped` properties derive lifecycle state
+from current-version allocations and task-group summary counts rather than from
+Nomad’s coarse `running`/`dead` job status.
+
 This mirrors the boundary used by
 [supervisor-pydantic](https://github.com/airflow-laminar/supervisor-pydantic) and
 [systemd-pydantic](https://github.com/airflow-laminar/systemd-pydantic): models

@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.DeploymentStatus
+================================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: DeploymentStatus

@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.EvaluationStatus
+================================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: EvaluationStatus

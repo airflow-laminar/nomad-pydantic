@@ -11,12 +11,16 @@ the nomad-pydantic authors
 - [API reference](docs/src/api.html.md): The public API is re-exported from `nomad_pydantic`.
 - [Why model Nomad jobs in Python?](docs/src/explanation.html.md): Nomad accepts JSON jobs through its API and CLI, while operators commonly author
 - [How-to guides](docs/src/how-to.html.md): These guides provide focused recipes for loading and operating Nomad jobs.
+- [nomad_pydantic.AllocationStatus](docs/src/_build/nomad_pydantic.AllocationStatus.html.md): Bases: `StatusModel`
 - [nomad_pydantic.Artifact](docs/src/_build/nomad_pydantic.Artifact.html.md): Bases: `NomadModel`
 - [nomad_pydantic.CheckRestart](docs/src/_build/nomad_pydantic.CheckRestart.html.md): Bases: `NomadModel`
 - [nomad_pydantic.CommandResult](docs/src/_build/nomad_pydantic.CommandResult.html.md): Bases: `object`
 - [nomad_pydantic.CommandRunner](docs/src/_build/nomad_pydantic.CommandRunner.html.md): Bases: `Protocol`
+- [nomad_pydantic.DeploymentStatus](docs/src/_build/nomad_pydantic.DeploymentStatus.html.md): Bases: `StatusModel`
+- [nomad_pydantic.EvaluationStatus](docs/src/_build/nomad_pydantic.EvaluationStatus.html.md): Bases: `StatusModel`
 - [nomad_pydantic.Job](docs/src/_build/nomad_pydantic.Job.html.md): Bases: `NomadModel`
-- [nomad_pydantic.JobStatus](docs/src/_build/nomad_pydantic.JobStatus.html.md): Bases: `NomadModel`
+- [nomad_pydantic.JobStatus](docs/src/_build/nomad_pydantic.JobStatus.html.md): Bases: `StatusModel`
+- [nomad_pydantic.JobSummary](docs/src/_build/nomad_pydantic.JobSummary.html.md): Bases: `StatusModel`
 - [nomad_pydantic.Lifecycle](docs/src/_build/nomad_pydantic.Lifecycle.html.md): Bases: `NomadModel`
 - [nomad_pydantic.LogConfig](docs/src/_build/nomad_pydantic.LogConfig.html.md): Bases: `NomadModel`
 - [nomad_pydantic.NetworkPort](docs/src/_build/nomad_pydantic.NetworkPort.html.md): Bases: `NomadModel`
@@ -33,6 +37,7 @@ the nomad-pydantic authors
 - [nomad_pydantic.SubprocessCommandRunner](docs/src/_build/nomad_pydantic.SubprocessCommandRunner.html.md): Bases: `object`
 - [nomad_pydantic.Task](docs/src/_build/nomad_pydantic.Task.html.md): Bases: `NomadModel`
 - [nomad_pydantic.TaskGroup](docs/src/_build/nomad_pydantic.TaskGroup.html.md): Bases: `NomadModel`
+- [nomad_pydantic.TaskGroupStatus](docs/src/_build/nomad_pydantic.TaskGroupStatus.html.md): Bases: `StatusModel`
 - [nomad_pydantic.Template](docs/src/_build/nomad_pydantic.Template.html.md): Bases: `NomadModel`
 - [nomad_pydantic.UpdateStrategy](docs/src/_build/nomad_pydantic.UpdateStrategy.html.md): Bases: `NomadModel`
 - [nomad_pydantic.Volume](docs/src/_build/nomad_pydantic.Volume.html.md): Bases: `NomadModel`

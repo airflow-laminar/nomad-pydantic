@@ -87,6 +87,9 @@ status = config.status()
 if status.running:
     config.restart()
 
+if status.failed:
+    raise RuntimeError("Nomad allocation failed")
+
 config.stop()
 ```
 

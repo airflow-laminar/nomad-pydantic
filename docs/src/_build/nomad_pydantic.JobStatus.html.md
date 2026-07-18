@@ -2,22 +2,30 @@
 
 ### *pydantic model* nomad_pydantic.JobStatus
 
-Bases: `NomadModel`
+Bases: `StatusModel`
 
-#### *field* id *: str* *[Required]* *(alias 'ID')*
+Status bundle emitted by `nomad job status -json` for one job.
 
-#### *field* name *: str | None* *= None* *(alias 'Name')*
+#### *field* summary *: [JobSummary](nomad_pydantic.JobSummary.md#nomad_pydantic.JobSummary)* *[Required]* *(alias 'Summary')*
 
-#### *field* namespace *: str | None* *= None* *(alias 'Namespace')*
+#### *field* allocations *: list[[AllocationStatus](nomad_pydantic.AllocationStatus.md#nomad_pydantic.AllocationStatus)]* *[Required]* *(alias 'Allocations')*
 
-#### *field* type *: str | None* *= None* *(alias 'Type')*
+#### *field* latest_deployment *: [DeploymentStatus](nomad_pydantic.DeploymentStatus.md#nomad_pydantic.DeploymentStatus) | None* *= None* *(alias 'LatestDeployment')*
 
-#### *field* status *: str* *[Required]* *(alias 'Status')*
+#### *field* evaluations *: list[[EvaluationStatus](nomad_pydantic.EvaluationStatus.md#nomad_pydantic.EvaluationStatus)]* *[Required]* *(alias 'Evaluations')*
 
-#### *field* status_description *: str | None* *= None* *(alias 'StatusDescription')*
+#### *classmethod* from_cli(value: str | bytes) → [JobStatus](#nomad_pydantic.JobStatus)
 
-#### *field* stop *: bool* *= False* *(alias 'Stop')*
+#### *property* id *: str*
+
+#### *property* namespace *: str*
+
+#### *property* current_allocations *: list[[AllocationStatus](nomad_pydantic.AllocationStatus.md#nomad_pydantic.AllocationStatus)]*
 
 #### *property* running *: bool*
+
+#### *property* complete *: bool*
+
+#### *property* failed *: bool*
 
 #### *property* stopped *: bool*

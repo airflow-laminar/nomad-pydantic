@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.TaskGroupStatus
+===============================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: TaskGroupStatus

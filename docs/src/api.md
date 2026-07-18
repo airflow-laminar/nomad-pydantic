@@ -42,6 +42,11 @@ The public API is re-exported from `nomad_pydantic`.
    NomadConfiguration
    NomadClient
    JobStatus
+   JobSummary
+   TaskGroupStatus
+   AllocationStatus
+   DeploymentStatus
+   EvaluationStatus
    CommandResult
    CommandRunner
    SubprocessCommandRunner

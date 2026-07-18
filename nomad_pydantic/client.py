@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import subprocess
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Protocol
+from typing import TYPE_CHECKING, Any, Protocol
 
 from pydantic import Field
 
@@ -38,24 +38,93 @@ class NomadCommandError(RuntimeError):
         self.result = result
 
 
-class JobStatus(NomadModel):
+class StatusModel(NomadModel):
     model_config = {**NomadModel.model_config, "extra": "ignore"}
 
+
+class TaskGroupStatus(StatusModel):
+    queued: int = 0
+    complete: int = 0
+    failed: int = 0
+    running: int = 0
+    starting: int = 0
+    lost: int = 0
+    unknown: int = 0
+
+
+class JobSummary(StatusModel):
+    job_id: str = Field(alias="JobID")
+    namespace: str = "default"
+    summary: dict[str, TaskGroupStatus]
+
+
+class AllocationStatus(StatusModel):
     id: str = Field(alias="ID")
-    name: str | None = None
-    namespace: str | None = None
-    type: str | None = None
+    job_version: int = 0
+    task_group: str
+    desired_status: str
+    client_status: str
+
+
+class DeploymentStatus(StatusModel):
+    id: str = Field(alias="ID")
     status: str
     status_description: str | None = None
-    stop: bool = False
+
+
+class EvaluationStatus(StatusModel):
+    id: str = Field(alias="ID")
+    status: str
+    failed_task_group_allocations: dict[str, Any] | None = Field(default=None, alias="FailedTGAllocs")
+
+
+class JobStatus(StatusModel):
+    """Status bundle emitted by ``nomad job status -json`` for one job."""
+
+    summary: JobSummary
+    allocations: list[AllocationStatus]
+    latest_deployment: DeploymentStatus | None = None
+    evaluations: list[EvaluationStatus]
+
+    @classmethod
+    def from_cli(cls, value: str | bytes) -> JobStatus:
+        data = json.loads(value)
+        if not isinstance(data, list) or len(data) != 1:
+            raise ValueError("Nomad job status must contain exactly one job")
+        return cls.model_validate(data[0])
+
+    @property
+    def id(self) -> str:
+        return self.summary.job_id
+
+    @property
+    def namespace(self) -> str:
+        return self.summary.namespace
+
+    @property
+    def current_allocations(self) -> list[AllocationStatus]:
+        if not self.allocations:
+            return []
+        version = max(allocation.job_version for allocation in self.allocations)
+        return [allocation for allocation in self.allocations if allocation.job_version == version and allocation.desired_status == "run"]
 
     @property
     def running(self) -> bool:
-        return self.status == "running" and not self.stop
+        return any(group.queued or group.starting or group.running for group in self.summary.summary.values())
+
+    @property
+    def complete(self) -> bool:
+        current = self.current_allocations
+        return bool(current) and not self.running and all(allocation.client_status == "complete" for allocation in current)
+
+    @property
+    def failed(self) -> bool:
+        current = self.current_allocations
+        return bool(current) and not self.running and any(allocation.client_status in {"failed", "lost"} for allocation in current)
 
     @property
     def stopped(self) -> bool:
-        return self.stop or self.status == "dead"
+        return bool(self.allocations) and all(allocation.desired_status == "stop" for allocation in self.allocations)
 
 
 class NomadClient:
@@ -92,7 +161,7 @@ class NomadClient:
 
     def status(self) -> JobStatus:
         result = self._run(["job", "status", "-json", *self._identity()])
-        return JobStatus.model_validate(json.loads(result.stdout))
+        return JobStatus.from_cli(result.stdout)
 
     def start(self) -> CommandResult:
         return self._run(["job", "start", "-detach", *self._identity()])

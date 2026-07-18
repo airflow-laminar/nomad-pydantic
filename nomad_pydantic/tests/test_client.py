@@ -91,10 +91,20 @@ def test_client_registers_and_manages_job(configuration: NomadConfiguration) -> 
 
 
 def test_configuration_lifecycle_shortcuts(configuration: NomadConfiguration) -> None:
-    runner = RecordingRunner([CommandResult(0, '{"ID":"example","Status":"dead","Stop":true}', "")])
+    runner = RecordingRunner(
+        [
+            CommandResult(
+                0,
+                '[{"Summary":{"JobID":"example","Namespace":"analytics","Summary":{"job":{"Complete":1}}},'
+                '"Allocations":[{"ID":"alloc","JobVersion":1,"TaskGroup":"job","DesiredStatus":"run","ClientStatus":"complete"}],'
+                '"LatestDeployment":null,"Evaluations":[]}]',
+                "",
+            )
+        ]
+    )
 
     assert configuration.client(runner=runner).configuration is configuration
-    assert configuration.status(runner=runner).stopped
+    assert configuration.status(runner=runner).complete
     configuration.register(runner=runner)
     configuration.start(runner=runner)
     configuration.restart(runner=runner)
@@ -107,7 +117,17 @@ def test_client_without_namespace(tmp_path: Path) -> None:
         job=Job(id="example", task_groups=[TaskGroup(name="job", tasks=[Task(name="job", driver="exec")])]),
         path=tmp_path / "example.json",
     )
-    runner = RecordingRunner([CommandResult(0, '{"ID":"example","Status":"dead"}', "")])
+    runner = RecordingRunner(
+        [
+            CommandResult(
+                0,
+                '[{"Summary":{"JobID":"example","Summary":{"job":{}}},'
+                '"Allocations":[{"ID":"alloc","TaskGroup":"job","DesiredStatus":"stop","ClientStatus":"complete"}],'
+                '"LatestDeployment":null,"Evaluations":[]}]',
+                "",
+            )
+        ]
+    )
 
     status = NomadClient(configuration, runner=runner).status()
     NomadClient(configuration, runner=runner).stop()
@@ -118,12 +138,69 @@ def test_client_without_namespace(tmp_path: Path) -> None:
 
 
 def test_client_reads_status(configuration: NomadConfiguration) -> None:
-    runner = RecordingRunner([CommandResult(0, '{"ID":"example","Status":"running","Type":"batch"}', "")])
+    runner = RecordingRunner(
+        [
+            CommandResult(
+                0,
+                '[{"Summary":{"JobID":"example","Namespace":"analytics","Summary":{"job":{"Running":1}}},'
+                '"Allocations":[{"ID":"old","JobVersion":0,"TaskGroup":"job","DesiredStatus":"stop","ClientStatus":"failed"},'
+                '{"ID":"current","JobVersion":1,"TaskGroup":"job","DesiredStatus":"run","ClientStatus":"running"}],'
+                '"LatestDeployment":{"ID":"deployment","Status":"running"},'
+                '"Evaluations":[{"ID":"evaluation","Status":"complete"}]}]',
+                "",
+            )
+        ]
+    )
 
     status = NomadClient(configuration, runner=runner).status()
 
     assert status.id == "example"
+    assert status.namespace == "analytics"
     assert status.running
+    assert not status.complete
+    assert not status.failed
+    assert not status.stopped
+    assert [allocation.id for allocation in status.current_allocations] == ["current"]
+
+
+def test_client_reads_failed_status(configuration: NomadConfiguration) -> None:
+    runner = RecordingRunner(
+        [
+            CommandResult(
+                0,
+                '[{"Summary":{"JobID":"example","Summary":{"job":{"Failed":1}}},'
+                '"Allocations":[{"ID":"alloc","TaskGroup":"job","DesiredStatus":"run","ClientStatus":"failed"}],'
+                '"LatestDeployment":null,"Evaluations":[]}]',
+                "",
+            )
+        ]
+    )
+
+    status = NomadClient(configuration, runner=runner).status()
+
+    assert status.failed
+    assert not status.complete
+
+
+def test_status_without_allocations(configuration: NomadConfiguration) -> None:
+    runner = RecordingRunner(
+        [CommandResult(0, '[{"Summary":{"JobID":"example","Summary":{}},"Allocations":[],"LatestDeployment":null,"Evaluations":[]}]', "")]
+    )
+
+    status = NomadClient(configuration, runner=runner).status()
+
+    assert status.current_allocations == []
+    assert not status.complete
+    assert not status.failed
+    assert not status.stopped
+
+
+@pytest.mark.parametrize("value", ["{}", "[]", "[{}, {}]"])
+def test_status_requires_one_cli_result(value: str) -> None:
+    from nomad_pydantic import JobStatus
+
+    with pytest.raises(ValueError, match="exactly one job"):
+        JobStatus.from_cli(value)
 
 
 def test_client_raises_useful_error(configuration: NomadConfiguration) -> None:

@@ -74,7 +74,30 @@ def test_nomad_durations_render_as_nanoseconds() -> None:
 
     assert task.model_dump(by_alias=True)["KillTimeout"] == 90_000_000_000
 
+    assert Task(name="worker", driver="exec", kill_timeout=42).kill_timeout == 42
+    with pytest.raises(ValidationError, match="invalid Nomad duration"):
+        Task(name="worker", driver="exec", kill_timeout="1s-bad")
+    with pytest.raises(ValidationError, match="invalid Nomad duration"):
+        Task(name="worker", driver="exec", kill_timeout="1sx2s")
+    with pytest.raises(ValidationError, match="invalid Nomad duration"):
+        Task(name="worker", driver="exec", kill_timeout="")
+
 
 def test_job_rejects_duplicate_names() -> None:
     with pytest.raises(ValidationError, match="task names must be unique"):
         TaskGroup(name="workers", tasks=[Task(name="worker", driver="exec"), Task(name="worker", driver="exec")])
+
+    with pytest.raises(ValidationError, match="at least one task"):
+        TaskGroup(name="empty", tasks=[])
+
+    group = TaskGroup(name="worker", tasks=[Task(name="worker", driver="exec")])
+    with pytest.raises(ValidationError, match="at least one task group"):
+        Job(id="empty", task_groups=[])
+    with pytest.raises(ValidationError, match="task group names must be unique"):
+        Job(id="duplicate", task_groups=[group, group])
+
+
+def test_job_loads_bare_json() -> None:
+    job = Job.from_json('{"ID":"example","TaskGroups":[{"Name":"group","Tasks":[{"Name":"task","Driver":"exec"}]}]}')
+
+    assert job.id == "example"

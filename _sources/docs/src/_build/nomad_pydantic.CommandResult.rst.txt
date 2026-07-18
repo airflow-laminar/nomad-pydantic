@@ -1,0 +1,30 @@
+﻿nomad\_pydantic.CommandResult
+=============================
+
+.. currentmodule:: nomad_pydantic
+
+.. autoclass:: CommandResult
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CommandResult.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CommandResult.returncode
+      ~CommandResult.stdout
+      ~CommandResult.stderr
+   
+   

@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.CheckRestart
+============================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: CheckRestart

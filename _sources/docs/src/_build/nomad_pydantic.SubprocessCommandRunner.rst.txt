@@ -1,0 +1,23 @@
+﻿nomad\_pydantic.SubprocessCommandRunner
+=======================================
+
+.. currentmodule:: nomad_pydantic
+
+.. autoclass:: SubprocessCommandRunner
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SubprocessCommandRunner.__init__
+      ~SubprocessCommandRunner.run
+   
+   
+
+   
+   
+   

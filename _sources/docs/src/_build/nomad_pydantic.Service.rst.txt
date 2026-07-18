@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.Service
+=======================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: Service

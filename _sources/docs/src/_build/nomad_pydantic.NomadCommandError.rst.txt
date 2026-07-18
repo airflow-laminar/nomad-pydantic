@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.NomadCommandError
+=================================
+
+.. currentmodule:: nomad_pydantic
+
+.. autoexception:: NomadCommandError

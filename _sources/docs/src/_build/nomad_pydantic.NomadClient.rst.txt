@@ -1,0 +1,29 @@
+﻿nomad\_pydantic.NomadClient
+===========================
+
+.. currentmodule:: nomad_pydantic
+
+.. autoclass:: NomadClient
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~NomadClient.__init__
+      ~NomadClient.force_periodic
+      ~NomadClient.register
+      ~NomadClient.restart
+      ~NomadClient.start
+      ~NomadClient.status
+      ~NomadClient.stop
+      ~NomadClient.validate
+   
+   
+
+   
+   
+   

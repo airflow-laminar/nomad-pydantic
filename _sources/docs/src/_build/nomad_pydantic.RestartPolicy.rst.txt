@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.RestartPolicy
+=============================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: RestartPolicy

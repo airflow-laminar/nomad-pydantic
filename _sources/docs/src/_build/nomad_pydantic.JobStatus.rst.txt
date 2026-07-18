@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.JobStatus
+=========================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: JobStatus

@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.NomadConfiguration
+==================================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: NomadConfiguration

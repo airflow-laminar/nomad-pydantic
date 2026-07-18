@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.Artifact
+========================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: Artifact

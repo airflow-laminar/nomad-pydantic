@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.UpdateStrategy
+==============================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: UpdateStrategy

@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.LogConfig
+=========================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: LogConfig

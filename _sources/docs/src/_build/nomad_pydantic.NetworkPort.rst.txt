@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.NetworkPort
+===========================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: NetworkPort

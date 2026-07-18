@@ -1,0 +1,979 @@
+# index.html.md
+
+# nomad-pydantic
+
+Typed Python models for building, validating, rendering, and managing
+[Nomad](https://developer.hashicorp.com/nomad) jobs.
+
+[![Build Status](https://github.com/airflow-laminar/nomad-pydantic/actions/workflows/build.yaml/badge.svg?branch=main&event=push)](https://github.com/airflow-laminar/nomad-pydantic/actions/workflows/build.yaml)
+[![codecov](https://codecov.io/gh/airflow-laminar/nomad-pydantic/branch/main/graph/badge.svg)](https://codecov.io/gh/airflow-laminar/nomad-pydantic)
+[![License](https://img.shields.io/github/license/airflow-laminar/nomad-pydantic)](https://github.com/airflow-laminar/nomad-pydantic)
+[![PyPI](https://img.shields.io/pypi/v/nomad-pydantic.svg)](https://pypi.python.org/pypi/nomad-pydantic)
+
+`nomad-pydantic` represents jobs, task groups, tasks, resources, services,
+volumes, and periodic schedules as Pydantic models. It renders the JSON envelope
+accepted by `nomad job run -json` and provides a mockable client for common
+Nomad CLI lifecycle operations.
+
+```python
+from nomad_pydantic import Job, NomadConfiguration, Task, TaskGroup
+
+config = NomadConfiguration(
+    job=Job(
+        id="hello",
+        type="batch",
+        task_groups=[
+            TaskGroup(
+                name="hello",
+                tasks=[
+                    Task(
+                        name="hello",
+                        driver="docker",
+                        config={"image": "alpine:3", "args": ["echo", "hello"]},
+                    )
+                ],
+            )
+        ],
+    )
+)
+
+config.write()
+```
+
+## Documentation
+
+- [Tutorial](docs/src/tutorial.md) builds and renders a first job.
+- [How-to guides](docs/src/how-to.md) cover Hydra, periodic jobs, and lifecycle
+  operations.
+- [Concepts](docs/src/explanation.md) explains the model hierarchy and JSON
+  boundary.
+- [API reference](docs/src/api.md) documents every public model and client.
+
+## Ecosystem
+
+`nomad-pydantic` follows the same configuration pattern as
+[supervisor-pydantic](https://github.com/airflow-laminar/supervisor-pydantic),
+[systemd-pydantic](https://github.com/airflow-laminar/systemd-pydantic), and
+[cron-pydantic](https://github.com/airflow-laminar/cron-pydantic). The broader
+declarative Airflow stack is built from
+[airflow-pydantic](https://github.com/airflow-laminar/airflow-pydantic) and
+[airflow-config](https://github.com/airflow-laminar/airflow-config), with runtime
+integrations provided by
+[airflow-supervisor](https://github.com/airflow-laminar/airflow-supervisor),
+[airflow-systemd](https://github.com/airflow-laminar/airflow-systemd), and
+[airflow-cron](https://github.com/airflow-laminar/airflow-cron).
+
+## Installation
+
+```bash
+pip install nomad-pydantic
+```
+
+
+# api.html.md
+
+# API reference
+
+The public API is re-exported from `nomad_pydantic`.
+
+## Job models
+
+| [`Job`](_build/nomad_pydantic.Job.md#nomad_pydantic.Job)                                        |    |
+|-------------------------------------------------------------------------------------------------|----|
+| [`TaskGroup`](_build/nomad_pydantic.TaskGroup.md#nomad_pydantic.TaskGroup)                      |    |
+| [`Task`](_build/nomad_pydantic.Task.md#nomad_pydantic.Task)                                     |    |
+| [`PeriodicConfig`](_build/nomad_pydantic.PeriodicConfig.md#nomad_pydantic.PeriodicConfig)       |    |
+| [`Resources`](_build/nomad_pydantic.Resources.md#nomad_pydantic.Resources)                      |    |
+| [`NetworkResource`](_build/nomad_pydantic.NetworkResource.md#nomad_pydantic.NetworkResource)    |    |
+| [`NetworkPort`](_build/nomad_pydantic.NetworkPort.md#nomad_pydantic.NetworkPort)                |    |
+| [`RestartPolicy`](_build/nomad_pydantic.RestartPolicy.md#nomad_pydantic.RestartPolicy)          |    |
+| [`ReschedulePolicy`](_build/nomad_pydantic.ReschedulePolicy.md#nomad_pydantic.ReschedulePolicy) |    |
+| [`UpdateStrategy`](_build/nomad_pydantic.UpdateStrategy.md#nomad_pydantic.UpdateStrategy)       |    |
+| [`Service`](_build/nomad_pydantic.Service.md#nomad_pydantic.Service)                            |    |
+| [`ServiceCheck`](_build/nomad_pydantic.ServiceCheck.md#nomad_pydantic.ServiceCheck)             |    |
+| [`CheckRestart`](_build/nomad_pydantic.CheckRestart.md#nomad_pydantic.CheckRestart)             |    |
+| [`Lifecycle`](_build/nomad_pydantic.Lifecycle.md#nomad_pydantic.Lifecycle)                      |    |
+| [`LogConfig`](_build/nomad_pydantic.LogConfig.md#nomad_pydantic.LogConfig)                      |    |
+| [`Template`](_build/nomad_pydantic.Template.md#nomad_pydantic.Template)                         |    |
+| [`Artifact`](_build/nomad_pydantic.Artifact.md#nomad_pydantic.Artifact)                         |    |
+| [`Volume`](_build/nomad_pydantic.Volume.md#nomad_pydantic.Volume)                               |    |
+| [`VolumeMount`](_build/nomad_pydantic.VolumeMount.md#nomad_pydantic.VolumeMount)                |    |
+
+## Configuration and lifecycle
+
+| [`NomadConfiguration`](_build/nomad_pydantic.NomadConfiguration.md#nomad_pydantic.NomadConfiguration)                  | A Nomad job together with its local JSON artifact and CLI settings.   |
+|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| [`NomadClient`](_build/nomad_pydantic.NomadClient.md#nomad_pydantic.NomadClient)(configuration, \*[, runner, ...])     | Manage a configuration through the installed Nomad CLI.               |
+| [`JobStatus`](_build/nomad_pydantic.JobStatus.md#nomad_pydantic.JobStatus)                                             |                                                                       |
+| [`CommandResult`](_build/nomad_pydantic.CommandResult.md#nomad_pydantic.CommandResult)(returncode, stdout, stderr)     |                                                                       |
+| [`CommandRunner`](_build/nomad_pydantic.CommandRunner.md#nomad_pydantic.CommandRunner)(\*args, \*\*kwargs)             |                                                                       |
+| [`SubprocessCommandRunner`](_build/nomad_pydantic.SubprocessCommandRunner.md#nomad_pydantic.SubprocessCommandRunner)() |                                                                       |
+| [`NomadCommandError`](_build/nomad_pydantic.NomadCommandError.md#nomad_pydantic.NomadCommandError)(command, result)    |                                                                       |
+
+
+# explanation.html.md
+
+# Why model Nomad jobs in Python?
+
+Nomad accepts JSON jobs through its API and CLI, while operators commonly author
+jobs in HCL. `nomad-pydantic` uses the JSON representation as its boundary because
+it is the native structure exchanged with Nomad and maps directly to nested
+Pydantic models.
+
+## Jobs form a typed hierarchy
+
+A Nomad job contains task groups, and each task group contains colocated tasks.
+The model hierarchy preserves that structure:
+
+```text
+Job
+└── TaskGroup
+    ├── Task
+    │   ├── Resources
+    │   ├── Service
+    │   └── VolumeMount
+    ├── NetworkResource
+    └── Volume
+```
+
+Validation therefore happens before scheduling. Duplicate task names, invalid
+periodic job types, and mutually exclusive CPU settings fail when models are
+created rather than after submission to a cluster.
+
+## Python names and Nomad names serve different boundaries
+
+Python callers use `snake_case`, such as `task_groups`, `memory_mb`, and
+`kill_timeout`. Rendered jobs use Nomad’s API names, such as `TaskGroups`,
+`MemoryMB`, and `KillTimeout`.
+
+Nomad’s JSON API encodes durations as nanoseconds. Models accept readable values
+such as `30s` and `1m30s`, then render their integer nanosecond equivalents. This
+keeps YAML and Python configuration readable without changing the wire format.
+
+## Configuration and lifecycle are separate concerns
+
+`Job` describes desired scheduler state. `NomadConfiguration` associates that job
+with a local JSON artifact. `NomadClient` performs lifecycle operations through
+the Nomad CLI. Separating these layers allows rendering and validation without a
+cluster and allows lifecycle tests to replace process execution with a fake
+runner.
+
+This mirrors the boundary used by
+[supervisor-pydantic](https://github.com/airflow-laminar/supervisor-pydantic) and
+[systemd-pydantic](https://github.com/airflow-laminar/systemd-pydantic): models
+describe workload configuration, while a client handles runtime state.
+
+
+# how-to.html.md
+
+# How-to guides
+
+These guides provide focused recipes for loading and operating Nomad jobs.
+Consult the [API reference](api.md) for the complete model surface.
+
+## How to load a job from Hydra YAML
+
+Create `config/jobs/report.yaml`:
+
+```yaml
+job:
+  id: report
+  type: batch
+  namespace: analytics
+  task_groups:
+    - name: report
+      tasks:
+        - name: report
+          driver: exec
+          config:
+            command: /opt/reports/build
+          resources:
+            cpu: 500
+            memory_mb: 256
+```
+
+Compose and validate it:
+
+```python
+from nomad_pydantic import NomadConfiguration
+
+config = NomadConfiguration.load("config/jobs", "report")
+config.write("build/report.json")
+```
+
+Pass Hydra overrides when values vary between deployments:
+
+```python
+config = NomadConfiguration.load(
+    "config/jobs",
+    "report",
+    overrides=["job.namespace=staging", "job.task_groups.0.count=2"],
+)
+```
+
+## How to schedule a periodic job
+
+Add `PeriodicConfig` to a `batch` or `sysbatch` job:
+
+```python
+from nomad_pydantic import Job, PeriodicConfig, Task, TaskGroup
+
+job = Job(
+    id="daily-report",
+    type="batch",
+    periodic=PeriodicConfig(
+        crons=["0 6 * * *"],
+        time_zone="America/New_York",
+        prohibit_overlap=True,
+    ),
+    task_groups=[
+        TaskGroup(
+            name="report",
+            tasks=[Task(name="report", driver="exec", config={"command": "/opt/reports/build"})],
+        )
+    ],
+)
+```
+
+The model renders `crons` as Nomad’s JSON `Specs` field and includes
+`SpecType: cron`.
+
+## How to register and manage a job
+
+The lifecycle methods invoke the installed `nomad` executable. Nomad CLI
+environment variables and configuration continue to control cluster address and
+authentication.
+
+```python
+from nomad_pydantic import NomadConfiguration
+
+config = NomadConfiguration.from_file("build/report.json")
+
+config.register()
+status = config.status()
+
+if status.running:
+    config.restart()
+
+config.stop()
+```
+
+Use `config.stop(purge=True)` to remove job history. Use
+`config.force_periodic()` to launch a periodic job immediately.
+
+## How to test lifecycle code without Nomad
+
+Provide an object implementing `CommandRunner`:
+
+```python
+from nomad_pydantic import CommandResult, NomadClient
+
+
+class FakeRunner:
+    def run(self, command, timeout=None):
+        return CommandResult(0, '{"ID":"report","Status":"running"}', "")
+
+
+client = NomadClient(config, runner=FakeRunner())
+assert client.status().running
+```
+
+
+# nomad_pydantic.Artifact.html.md
+
+# nomad_pydantic.Artifact
+
+### *pydantic model* nomad_pydantic.Artifact
+
+Bases: `NomadModel`
+
+#### *field* getter_source *: str* *[Required]* *(alias 'GetterSource')*
+
+#### *field* relative_dest *: str | None* *= None* *(alias 'RelativeDest')*
+
+#### *field* getter_mode *: str | None* *= None* *(alias 'GetterMode')*
+
+#### *field* getter_options *: dict[str, str]* *[Optional]* *(alias 'GetterOptions')*
+
+#### *field* getter_headers *: dict[str, str]* *[Optional]* *(alias 'GetterHeaders')*
+
+
+# nomad_pydantic.CheckRestart.html.md
+
+# nomad_pydantic.CheckRestart
+
+### *pydantic model* nomad_pydantic.CheckRestart
+
+Bases: `NomadModel`
+
+#### *field* limit *: int | None* *= None* *(alias 'Limit')*
+
+#### *field* grace *: Duration | None* *= None* *(alias 'Grace')*
+
+#### *field* ignore_warnings *: bool | None* *= None* *(alias 'IgnoreWarnings')*
+
+
+# nomad_pydantic.CommandResult.html.md
+
+# nomad_pydantic.CommandResult
+
+### *class* nomad_pydantic.CommandResult(returncode: 'int', stdout: 'str', stderr: 'str')
+
+Bases: `object`
+
+#### \_\_init_\_(returncode: int, stdout: str, stderr: str) → None
+
+### Methods
+
+| [`__init__`](#nomad_pydantic.CommandResult.__init__)(returncode, stdout, stderr)   |    |
+|------------------------------------------------------------------------------------|----|
+
+### Attributes
+
+| `returncode`   |    |
+|----------------|----|
+| `stdout`       |    |
+| `stderr`       |    |
+
+
+# nomad_pydantic.CommandRunner.html.md
+
+# nomad_pydantic.CommandRunner
+
+### *class* nomad_pydantic.CommandRunner(\*args, \*\*kwargs)
+
+Bases: `Protocol`
+
+#### \_\_init_\_(\*args, \*\*kwargs)
+
+### Methods
+
+| [`__init__`](#nomad_pydantic.CommandRunner.__init__)(\*args, \*\*kwargs)   |    |
+|----------------------------------------------------------------------------|----|
+| `run`(command[, timeout])                                                  |    |
+
+
+# nomad_pydantic.Job.html.md
+
+# nomad_pydantic.Job
+
+### *pydantic model* nomad_pydantic.Job
+
+Bases: `NomadModel`
+
+#### *field* id *: str* *[Required]* *(alias 'ID')*
+
+#### *field* name *: str | None* *= None* *(alias 'Name')*
+
+#### *field* type *: Literal['service', 'batch', 'system', 'sysbatch']* *= 'service'* *(alias 'Type')*
+
+#### *field* region *: str | None* *= None* *(alias 'Region')*
+
+#### *field* namespace *: str | None* *= None* *(alias 'Namespace')*
+
+#### *field* node_pool *: str | None* *= None* *(alias 'NodePool')*
+
+#### *field* priority *: int | None* *= None* *(alias 'Priority')*
+
+#### *field* all_at_once *: bool | None* *= None* *(alias 'AllAtOnce')*
+
+#### *field* datacenters *: list[str]* *[Optional]* *(alias 'Datacenters')*
+
+#### *field* meta *: dict[str, str]* *[Optional]* *(alias 'Meta')*
+
+#### *field* task_groups *: list[[TaskGroup](nomad_pydantic.TaskGroup.md#nomad_pydantic.TaskGroup)]* *[Required]* *(alias 'TaskGroups')*
+
+#### *field* periodic *: [PeriodicConfig](nomad_pydantic.PeriodicConfig.md#nomad_pydantic.PeriodicConfig) | None* *= None* *(alias 'Periodic')*
+
+#### *field* stop *: bool | None* *= None* *(alias 'Stop')*
+
+#### to_json(, indent: int | None = 2) → str
+
+Render the JSON envelope accepted by `nomad job run -json`.
+
+#### *classmethod* from_json(value: str | bytes) → [Job](#nomad_pydantic.Job)
+
+Load either a Nomad JSON job envelope or a bare job object.
+
+
+# nomad_pydantic.JobStatus.html.md
+
+# nomad_pydantic.JobStatus
+
+### *pydantic model* nomad_pydantic.JobStatus
+
+Bases: `NomadModel`
+
+#### *field* id *: str* *[Required]* *(alias 'ID')*
+
+#### *field* name *: str | None* *= None* *(alias 'Name')*
+
+#### *field* namespace *: str | None* *= None* *(alias 'Namespace')*
+
+#### *field* type *: str | None* *= None* *(alias 'Type')*
+
+#### *field* status *: str* *[Required]* *(alias 'Status')*
+
+#### *field* status_description *: str | None* *= None* *(alias 'StatusDescription')*
+
+#### *field* stop *: bool* *= False* *(alias 'Stop')*
+
+#### *property* running *: bool*
+
+#### *property* stopped *: bool*
+
+
+# nomad_pydantic.Lifecycle.html.md
+
+# nomad_pydantic.Lifecycle
+
+### *pydantic model* nomad_pydantic.Lifecycle
+
+Bases: `NomadModel`
+
+#### *field* hook *: Literal['prestart', 'poststart', 'poststop']* *[Required]* *(alias 'Hook')*
+
+#### *field* sidecar *: bool* *= False* *(alias 'Sidecar')*
+
+
+# nomad_pydantic.LogConfig.html.md
+
+# nomad_pydantic.LogConfig
+
+### *pydantic model* nomad_pydantic.LogConfig
+
+Bases: `NomadModel`
+
+#### *field* max_files *: int | None* *= None* *(alias 'MaxFiles')*
+
+#### *field* max_file_size_mb *: int | None* *= None* *(alias 'MaxFileSizeMB')*
+
+#### *field* disabled *: bool | None* *= None* *(alias 'Disabled')*
+
+
+# nomad_pydantic.NetworkPort.html.md
+
+# nomad_pydantic.NetworkPort
+
+### *pydantic model* nomad_pydantic.NetworkPort
+
+Bases: `NomadModel`
+
+#### *field* label *: str* *[Required]* *(alias 'Label')*
+
+#### *field* value *: int | None* *= None* *(alias 'Value')*
+
+#### *field* to *: int | None* *= None* *(alias 'To')*
+
+#### *field* host_network *: str | None* *= None* *(alias 'HostNetwork')*
+
+#### *field* ignore_collision *: bool | None* *= None* *(alias 'IgnoreCollision')*
+
+
+# nomad_pydantic.NetworkResource.html.md
+
+# nomad_pydantic.NetworkResource
+
+### *pydantic model* nomad_pydantic.NetworkResource
+
+Bases: `NomadModel`
+
+#### *field* mode *: str | None* *= None* *(alias 'Mode')*
+
+#### *field* mbits *: int | None* *= None* *(alias 'MBits')*
+
+#### *field* hostname *: str | None* *= None* *(alias 'Hostname')*
+
+#### *field* dynamic_ports *: list[[NetworkPort](nomad_pydantic.NetworkPort.md#nomad_pydantic.NetworkPort)]* *[Optional]* *(alias 'DynamicPorts')*
+
+#### *field* reserved_ports *: list[[NetworkPort](nomad_pydantic.NetworkPort.md#nomad_pydantic.NetworkPort)]* *[Optional]* *(alias 'ReservedPorts')*
+
+#### *field* dns *: dict[str, Any] | None* *= None* *(alias 'DNS')*
+
+
+# nomad_pydantic.NomadClient.html.md
+
+# nomad_pydantic.NomadClient
+
+### *class* nomad_pydantic.NomadClient(configuration: [NomadConfiguration](nomad_pydantic.NomadConfiguration.md#nomad_pydantic.NomadConfiguration), , runner: [CommandRunner](nomad_pydantic.CommandRunner.md#nomad_pydantic.CommandRunner) | None = None, executable: str = 'nomad')
+
+Bases: `object`
+
+Manage a configuration through the installed Nomad CLI.
+
+#### \_\_init_\_(configuration: [NomadConfiguration](nomad_pydantic.NomadConfiguration.md#nomad_pydantic.NomadConfiguration), , runner: [CommandRunner](nomad_pydantic.CommandRunner.md#nomad_pydantic.CommandRunner) | None = None, executable: str = 'nomad') → None
+
+### Methods
+
+| [`__init__`](#nomad_pydantic.NomadClient.__init__)(configuration, \*[, runner, executable])   |    |
+|-----------------------------------------------------------------------------------------------|----|
+| `force_periodic`()                                                                            |    |
+| `register`()                                                                                  |    |
+| `restart`()                                                                                   |    |
+| `start`()                                                                                     |    |
+| `status`()                                                                                    |    |
+| `stop`(\*[, purge])                                                                           |    |
+| `validate`()                                                                                  |    |
+
+
+# nomad_pydantic.NomadCommandError.html.md
+
+# nomad_pydantic.NomadCommandError
+
+### *exception* nomad_pydantic.NomadCommandError(command: list[str], result: [CommandResult](nomad_pydantic.CommandResult.md#nomad_pydantic.CommandResult))
+
+Bases: `RuntimeError`
+
+
+# nomad_pydantic.NomadConfiguration.html.md
+
+# nomad_pydantic.NomadConfiguration
+
+### *pydantic model* nomad_pydantic.NomadConfiguration
+
+Bases: `BaseModel`
+
+A Nomad job together with its local JSON artifact and CLI settings.
+
+#### *field* job *: [Job](nomad_pydantic.Job.md#nomad_pydantic.Job)* *[Required]*
+
+#### *field* path *: Path | None* *= None*
+
+#### *field* working_dir *: Path | None* *= None*
+
+#### *field* command_timeout *: float | None* *= 60*
+
+#### to_cfg() → str
+
+#### write(path: str | Path | None = None) → Path
+
+#### *classmethod* from_file(path: str | Path, \*\*values: Any) → [NomadConfiguration](#nomad_pydantic.NomadConfiguration)
+
+#### *classmethod* load(config_dir: str | Path, config_name: str, , overrides: list[str] | None = None, \*\*values: Any) → [NomadConfiguration](#nomad_pydantic.NomadConfiguration)
+
+Compose a Hydra YAML configuration and validate it.
+
+#### client(\*\*values: Any) → [NomadClient](nomad_pydantic.NomadClient.md#nomad_pydantic.NomadClient)
+
+#### register(\*\*values: Any) → [CommandResult](nomad_pydantic.CommandResult.md#nomad_pydantic.CommandResult)
+
+#### status(\*\*values: Any) → [JobStatus](nomad_pydantic.JobStatus.md#nomad_pydantic.JobStatus)
+
+#### start(\*\*values: Any) → [CommandResult](nomad_pydantic.CommandResult.md#nomad_pydantic.CommandResult)
+
+#### restart(\*\*values: Any) → [CommandResult](nomad_pydantic.CommandResult.md#nomad_pydantic.CommandResult)
+
+#### force_periodic(\*\*values: Any) → [CommandResult](nomad_pydantic.CommandResult.md#nomad_pydantic.CommandResult)
+
+#### stop(, purge: bool = False, \*\*values: Any) → [CommandResult](nomad_pydantic.CommandResult.md#nomad_pydantic.CommandResult)
+
+
+# nomad_pydantic.PeriodicConfig.html.md
+
+# nomad_pydantic.PeriodicConfig
+
+### *pydantic model* nomad_pydantic.PeriodicConfig
+
+Bases: `NomadModel`
+
+#### *field* crons *: list[str]* *[Required]* *(alias 'Specs')*
+
+#### *field* spec_type *: Literal['cron']* *= 'cron'* *(alias 'SpecType')*
+
+#### *field* prohibit_overlap *: bool* *= False* *(alias 'ProhibitOverlap')*
+
+#### *field* time_zone *: str* *= 'UTC'* *(alias 'TimeZone')*
+
+#### *field* enabled *: bool* *= True* *(alias 'Enabled')*
+
+
+# nomad_pydantic.ReschedulePolicy.html.md
+
+# nomad_pydantic.ReschedulePolicy
+
+### *pydantic model* nomad_pydantic.ReschedulePolicy
+
+Bases: `NomadModel`
+
+#### *field* attempts *: int | None* *= None* *(alias 'Attempts')*
+
+#### *field* interval *: Duration | None* *= None* *(alias 'Interval')*
+
+#### *field* delay *: Duration | None* *= None* *(alias 'Delay')*
+
+#### *field* delay_function *: Literal['constant', 'exponential', 'fibonacci'] | None* *= None* *(alias 'DelayFunction')*
+
+#### *field* max_delay *: Duration | None* *= None* *(alias 'MaxDelay')*
+
+#### *field* unlimited *: bool | None* *= None* *(alias 'Unlimited')*
+
+
+# nomad_pydantic.Resources.html.md
+
+# nomad_pydantic.Resources
+
+### *pydantic model* nomad_pydantic.Resources
+
+Bases: `NomadModel`
+
+#### *field* cpu *: int | None* *= None* *(alias 'CPU')*
+
+#### *field* cores *: int | None* *= None* *(alias 'Cores')*
+
+#### *field* memory_mb *: int | None* *= None* *(alias 'MemoryMB')*
+
+#### *field* memory_max_mb *: int | None* *= None* *(alias 'MemoryMaxMB')*
+
+#### *field* disk_mb *: int | None* *= None* *(alias 'DiskMB')*
+
+#### *field* networks *: list[[NetworkResource](nomad_pydantic.NetworkResource.md#nomad_pydantic.NetworkResource)]* *[Optional]* *(alias 'Networks')*
+
+
+# nomad_pydantic.RestartPolicy.html.md
+
+# nomad_pydantic.RestartPolicy
+
+### *pydantic model* nomad_pydantic.RestartPolicy
+
+Bases: `NomadModel`
+
+#### *field* attempts *: int | None* *= None* *(alias 'Attempts')*
+
+#### *field* interval *: Duration | None* *= None* *(alias 'Interval')*
+
+#### *field* delay *: Duration | None* *= None* *(alias 'Delay')*
+
+#### *field* mode *: Literal['delay', 'fail'] | None* *= None* *(alias 'Mode')*
+
+#### *field* render_templates *: bool | None* *= None* *(alias 'RenderTemplates')*
+
+
+# nomad_pydantic.Service.html.md
+
+# nomad_pydantic.Service
+
+### *pydantic model* nomad_pydantic.Service
+
+Bases: `NomadModel`
+
+#### *field* name *: str | None* *= None* *(alias 'Name')*
+
+#### *field* provider *: Literal['consul', 'nomad'] | None* *= None* *(alias 'Provider')*
+
+#### *field* port_label *: str | None* *= None* *(alias 'PortLabel')*
+
+#### *field* address_mode *: str | None* *= None* *(alias 'AddressMode')*
+
+#### *field* tags *: list[str]* *[Optional]* *(alias 'Tags')*
+
+#### *field* canary_tags *: list[str]* *[Optional]* *(alias 'CanaryTags')*
+
+#### *field* meta *: dict[str, str]* *[Optional]* *(alias 'Meta')*
+
+#### *field* checks *: list[[ServiceCheck](nomad_pydantic.ServiceCheck.md#nomad_pydantic.ServiceCheck)]* *[Optional]* *(alias 'Checks')*
+
+
+# nomad_pydantic.ServiceCheck.html.md
+
+# nomad_pydantic.ServiceCheck
+
+### *pydantic model* nomad_pydantic.ServiceCheck
+
+Bases: `NomadModel`
+
+#### *field* name *: str | None* *= None* *(alias 'Name')*
+
+#### *field* type *: Literal['grpc', 'http', 'script', 'tcp']* *[Required]* *(alias 'Type')*
+
+#### *field* command *: str | None* *= None* *(alias 'Command')*
+
+#### *field* args *: list[str]* *[Optional]* *(alias 'Args')*
+
+#### *field* path *: str | None* *= None* *(alias 'Path')*
+
+#### *field* protocol *: str | None* *= None* *(alias 'Protocol')*
+
+#### *field* port_label *: str | None* *= None* *(alias 'PortLabel')*
+
+#### *field* interval *: Duration | None* *= None* *(alias 'Interval')*
+
+#### *field* timeout *: Duration | None* *= None* *(alias 'Timeout')*
+
+#### *field* method *: str | None* *= None* *(alias 'Method')*
+
+#### *field* header *: dict[str, list[str]]* *[Optional]* *(alias 'Header')*
+
+#### *field* body *: str | None* *= None* *(alias 'Body')*
+
+#### *field* tls_skip_verify *: bool | None* *= None* *(alias 'TLSSkipVerify')*
+
+#### *field* grpc_service *: str | None* *= None* *(alias 'GRPCService')*
+
+#### *field* grpc_use_tls *: bool | None* *= None* *(alias 'GRPCUseTLS')*
+
+#### *field* address_mode *: str | None* *= None* *(alias 'AddressMode')*
+
+#### *field* on_update *: str | None* *= None* *(alias 'OnUpdate')*
+
+#### *field* check_restart *: [CheckRestart](nomad_pydantic.CheckRestart.md#nomad_pydantic.CheckRestart) | None* *= None* *(alias 'CheckRestart')*
+
+
+# nomad_pydantic.SubprocessCommandRunner.html.md
+
+# nomad_pydantic.SubprocessCommandRunner
+
+### *class* nomad_pydantic.SubprocessCommandRunner
+
+Bases: `object`
+
+#### \_\_init_\_()
+
+### Methods
+
+| [`__init__`](#nomad_pydantic.SubprocessCommandRunner.__init__)()   |    |
+|--------------------------------------------------------------------|----|
+| `run`(command[, timeout])                                          |    |
+
+
+# nomad_pydantic.Task.html.md
+
+# nomad_pydantic.Task
+
+### *pydantic model* nomad_pydantic.Task
+
+Bases: `NomadModel`
+
+#### *field* name *: str* *[Required]* *(alias 'Name')*
+
+#### *field* driver *: str* *[Required]* *(alias 'Driver')*
+
+#### *field* user *: str | None* *= None* *(alias 'User')*
+
+#### *field* config *: dict[str, Any]* *[Optional]* *(alias 'Config')*
+
+#### *field* env *: dict[str, str]* *[Optional]* *(alias 'Env')*
+
+#### *field* services *: list[[Service](nomad_pydantic.Service.md#nomad_pydantic.Service)]* *[Optional]* *(alias 'Services')*
+
+#### *field* resources *: [Resources](nomad_pydantic.Resources.md#nomad_pydantic.Resources)* *[Optional]* *(alias 'Resources')*
+
+#### *field* restart_policy *: [RestartPolicy](nomad_pydantic.RestartPolicy.md#nomad_pydantic.RestartPolicy) | None* *= None* *(alias 'RestartPolicy')*
+
+#### *field* lifecycle *: [Lifecycle](nomad_pydantic.Lifecycle.md#nomad_pydantic.Lifecycle) | None* *= None* *(alias 'Lifecycle')*
+
+#### *field* meta *: dict[str, str]* *[Optional]* *(alias 'Meta')*
+
+#### *field* kill_timeout *: Duration | None* *= None* *(alias 'KillTimeout')*
+
+#### *field* shutdown_delay *: Duration | None* *= None* *(alias 'ShutdownDelay')*
+
+#### *field* kill_signal *: str | None* *= None* *(alias 'KillSignal')*
+
+#### *field* log_config *: [LogConfig](nomad_pydantic.LogConfig.md#nomad_pydantic.LogConfig) | None* *= None* *(alias 'LogConfig')*
+
+#### *field* templates *: list[[Template](nomad_pydantic.Template.md#nomad_pydantic.Template)]* *[Optional]* *(alias 'Templates')*
+
+#### *field* artifacts *: list[[Artifact](nomad_pydantic.Artifact.md#nomad_pydantic.Artifact)]* *[Optional]* *(alias 'Artifacts')*
+
+#### *field* volume_mounts *: list[[VolumeMount](nomad_pydantic.VolumeMount.md#nomad_pydantic.VolumeMount)]* *[Optional]* *(alias 'VolumeMounts')*
+
+
+# nomad_pydantic.TaskGroup.html.md
+
+# nomad_pydantic.TaskGroup
+
+### *pydantic model* nomad_pydantic.TaskGroup
+
+Bases: `NomadModel`
+
+#### *field* name *: str* *[Required]* *(alias 'Name')*
+
+#### *field* count *: int* *= 1* *(alias 'Count')*
+
+#### *field* tasks *: list[[Task](nomad_pydantic.Task.md#nomad_pydantic.Task)]* *[Required]* *(alias 'Tasks')*
+
+#### *field* restart_policy *: [RestartPolicy](nomad_pydantic.RestartPolicy.md#nomad_pydantic.RestartPolicy) | None* *= None* *(alias 'RestartPolicy')*
+
+#### *field* reschedule_policy *: [ReschedulePolicy](nomad_pydantic.ReschedulePolicy.md#nomad_pydantic.ReschedulePolicy) | None* *= None* *(alias 'ReschedulePolicy')*
+
+#### *field* update *: [UpdateStrategy](nomad_pydantic.UpdateStrategy.md#nomad_pydantic.UpdateStrategy) | None* *= None* *(alias 'Update')*
+
+#### *field* networks *: list[[NetworkResource](nomad_pydantic.NetworkResource.md#nomad_pydantic.NetworkResource)]* *[Optional]* *(alias 'Networks')*
+
+#### *field* services *: list[[Service](nomad_pydantic.Service.md#nomad_pydantic.Service)]* *[Optional]* *(alias 'Services')*
+
+#### *field* meta *: dict[str, str]* *[Optional]* *(alias 'Meta')*
+
+#### *field* volumes *: dict[str, [Volume](nomad_pydantic.Volume.md#nomad_pydantic.Volume)]* *[Optional]* *(alias 'Volumes')*
+
+#### *field* shutdown_delay *: Duration | None* *= None* *(alias 'ShutdownDelay')*
+
+#### *field* max_client_disconnect *: Duration | None* *= None* *(alias 'MaxClientDisconnect')*
+
+#### *field* max_run_duration *: Duration | None* *= None* *(alias 'MaxRunDuration')*
+
+
+# nomad_pydantic.Template.html.md
+
+# nomad_pydantic.Template
+
+### *pydantic model* nomad_pydantic.Template
+
+Bases: `NomadModel`
+
+#### *field* source_path *: str | None* *= None* *(alias 'SourcePath')*
+
+#### *field* destination *: str* *[Required]* *(alias 'Destination')*
+
+#### *field* embedded_tmpl *: str | None* *= None* *(alias 'EmbeddedTmpl')*
+
+#### *field* change_mode *: Literal['noop', 'restart', 'signal', 'script'] | None* *= None* *(alias 'ChangeMode')*
+
+#### *field* change_signal *: str | None* *= None* *(alias 'ChangeSignal')*
+
+#### *field* perms *: str | None* *= None* *(alias 'Perms')*
+
+#### *field* envvars *: bool | None* *= None* *(alias 'Envvars')*
+
+
+# nomad_pydantic.UpdateStrategy.html.md
+
+# nomad_pydantic.UpdateStrategy
+
+### *pydantic model* nomad_pydantic.UpdateStrategy
+
+Bases: `NomadModel`
+
+#### *field* max_parallel *: int | None* *= None* *(alias 'MaxParallel')*
+
+#### *field* health_check *: Literal['checks', 'task_states', 'manual'] | None* *= None* *(alias 'HealthCheck')*
+
+#### *field* min_healthy_time *: Duration | None* *= None* *(alias 'MinHealthyTime')*
+
+#### *field* healthy_deadline *: Duration | None* *= None* *(alias 'HealthyDeadline')*
+
+#### *field* progress_deadline *: Duration | None* *= None* *(alias 'ProgressDeadline')*
+
+#### *field* auto_revert *: bool | None* *= None* *(alias 'AutoRevert')*
+
+#### *field* auto_promote *: bool | None* *= None* *(alias 'AutoPromote')*
+
+#### *field* canary *: int | None* *= None* *(alias 'Canary')*
+
+#### *field* stagger *: Duration | None* *= None* *(alias 'Stagger')*
+
+
+# nomad_pydantic.Volume.html.md
+
+# nomad_pydantic.Volume
+
+### *pydantic model* nomad_pydantic.Volume
+
+Bases: `NomadModel`
+
+#### *field* type *: Literal['csi', 'host']* *[Required]* *(alias 'Type')*
+
+#### *field* source *: str* *[Required]* *(alias 'Source')*
+
+#### *field* read_only *: bool* *= False* *(alias 'ReadOnly')*
+
+#### *field* access_mode *: str | None* *= None* *(alias 'AccessMode')*
+
+#### *field* attachment_mode *: str | None* *= None* *(alias 'AttachmentMode')*
+
+#### *field* per_alloc *: bool | None* *= None* *(alias 'PerAlloc')*
+
+#### *field* sticky *: bool | None* *= None* *(alias 'Sticky')*
+
+
+# nomad_pydantic.VolumeMount.html.md
+
+# nomad_pydantic.VolumeMount
+
+### *pydantic model* nomad_pydantic.VolumeMount
+
+Bases: `NomadModel`
+
+#### *field* volume *: str* *[Required]* *(alias 'Volume')*
+
+#### *field* destination *: str* *[Required]* *(alias 'Destination')*
+
+#### *field* read_only *: bool* *= False* *(alias 'ReadOnly')*
+
+#### *field* propagation_mode *: str | None* *= None* *(alias 'PropagationMode')*
+
+#### *field* selinux_label *: str | None* *= None* *(alias 'SELinuxLabel')*
+
+
+# tutorial.html.md
+
+# Tutorial: render a first Nomad job
+
+In this tutorial, we will model a small batch job, render its Nomad JSON, and
+inspect the result without connecting to a Nomad cluster.
+
+## Install the package
+
+```bash
+pip install nomad-pydantic
+```
+
+## Create the job
+
+Create `hello.py`:
+
+```python
+from nomad_pydantic import Job, NomadConfiguration, Resources, Task, TaskGroup
+
+config = NomadConfiguration(
+    job=Job(
+        id="hello",
+        type="batch",
+        datacenters=["dc1"],
+        task_groups=[
+            TaskGroup(
+                name="hello",
+                tasks=[
+                    Task(
+                        name="hello",
+                        driver="docker",
+                        config={"image": "alpine:3", "args": ["echo", "hello"]},
+                        resources=Resources(cpu=100, memory_mb=64),
+                    )
+                ],
+            )
+        ],
+    ),
+    path="build/hello.json",
+)
+
+print(config.write())
+```
+
+Run it:
+
+```bash
+python hello.py
+```
+
+The output is the generated file:
+
+```text
+build/hello.json
+```
+
+## Inspect the jobspec
+
+Open `build/hello.json`. It contains a `Job` envelope with `TaskGroups`, `Tasks`,
+and `Resources` using Nomad’s JSON API field names.
+
+Validate the file if the Nomad CLI is installed:
+
+```bash
+nomad job validate -json build/hello.json
+```
+
+The command reports that the job validation succeeded. You have now produced a
+typed Nomad jobspec without writing HCL or contacting a cluster.
+
+

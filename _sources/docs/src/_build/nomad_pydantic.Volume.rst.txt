@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.Volume
+======================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: Volume

@@ -1,0 +1,6 @@
+﻿nomad\_pydantic.Template
+========================
+
+.. currentmodule:: nomad_pydantic
+
+.. autopydantic_model:: Template

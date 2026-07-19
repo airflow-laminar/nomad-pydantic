@@ -57,6 +57,7 @@ declarative Airflow stack is built from
 [airflow-pydantic](https://github.com/airflow-laminar/airflow-pydantic) and
 [airflow-config](https://github.com/airflow-laminar/airflow-config), with runtime
 integrations provided by
+[airflow-nomad](https://github.com/airflow-laminar/airflow-nomad),
 [airflow-supervisor](https://github.com/airflow-laminar/airflow-supervisor),
 [airflow-systemd](https://github.com/airflow-laminar/airflow-systemd), and
 [airflow-cron](https://github.com/airflow-laminar/airflow-cron).

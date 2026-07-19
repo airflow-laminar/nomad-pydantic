@@ -53,3 +53,8 @@ This mirrors the boundary used by
 [supervisor-pydantic](https://github.com/airflow-laminar/supervisor-pydantic) and
 [systemd-pydantic](https://github.com/airflow-laminar/systemd-pydantic): models
 describe workload configuration, while a client handles runtime state.
+
+[airflow-nomad](https://github.com/airflow-laminar/airflow-nomad) composes these
+layers into an Airflow lifecycle: Airflow registers the modeled job, monitors
+`JobStatus`, handles retriggers, and stops or purges the job according to the DAG
+configuration.

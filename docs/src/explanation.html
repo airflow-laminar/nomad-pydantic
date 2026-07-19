@@ -187,6 +187,10 @@ Nomad’s coarse <code class="docutils literal notranslate"><span class="pre">ru
 <a class="reference external" href="https://github.com/airflow-laminar/supervisor-pydantic">supervisor-pydantic</a> and
 <a class="reference external" href="https://github.com/airflow-laminar/systemd-pydantic">systemd-pydantic</a>: models
 describe workload configuration, while a client handles runtime state.</p>
+<p><a class="reference external" href="https://github.com/airflow-laminar/airflow-nomad">airflow-nomad</a> composes these
+layers into an Airflow lifecycle: Airflow registers the modeled job, monitors
+<code class="docutils literal notranslate"><span class="pre">JobStatus</span></code>, handles retriggers, and stops or purges the job according to the DAG
+configuration.</p>
 </section>
 </section>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">

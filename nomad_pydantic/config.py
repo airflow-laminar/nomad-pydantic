@@ -61,7 +61,7 @@ class NomadConfiguration(BaseModel):
             composed = compose(config_name=config_name, overrides=overrides or [])
         data = OmegaConf.to_container(composed, resolve=True)
         if not isinstance(data, dict):
-            raise ValueError("Nomad configuration must be a mapping")
+            raise ValueError("Nomad configuration must be a mapping")  # noqa: TRY004
         return cls.model_validate({**data, **values})
 
     def client(self, **values: Any) -> NomadClient:

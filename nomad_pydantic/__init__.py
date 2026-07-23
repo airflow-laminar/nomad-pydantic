@@ -38,8 +38,8 @@ from nomad_pydantic.models import (
 )
 
 __all__ = [
-    "Artifact",
     "AllocationStatus",
+    "Artifact",
     "CheckRestart",
     "CommandResult",
     "CommandRunner",
@@ -64,8 +64,8 @@ __all__ = [
     "ServiceCheck",
     "SubprocessCommandRunner",
     "Task",
-    "TaskGroupStatus",
     "TaskGroup",
+    "TaskGroupStatus",
     "Template",
     "UpdateStrategy",
     "Volume",

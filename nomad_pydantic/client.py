@@ -3,9 +3,9 @@ from __future__ import annotations
 import json
 import subprocess
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Protocol
+from typing import TYPE_CHECKING, Any, ClassVar, Protocol
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 
 from nomad_pydantic.models import NomadModel
 
@@ -39,7 +39,7 @@ class NomadCommandError(RuntimeError):
 
 
 class StatusModel(NomadModel):
-    model_config = {**NomadModel.model_config, "extra": "ignore"}
+    model_config: ClassVar[ConfigDict] = {**NomadModel.model_config, "extra": "ignore"}
 
 
 class TaskGroupStatus(StatusModel):

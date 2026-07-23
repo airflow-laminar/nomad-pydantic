@@ -195,9 +195,9 @@
 </span><span id="line-3"><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 </span><span id="line-4"><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
 </span><span id="line-5"><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
-</span><span id="line-6"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Protocol</span>
+</span><span id="line-6"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Protocol</span>
 </span><span id="line-7">
-</span><span id="line-8"><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
+</span><span id="line-8"><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigDict</span><span class="p">,</span> <span class="n">Field</span>
 </span><span id="line-9">
 </span><span id="line-10"><span class="kn">from</span><span class="w"> </span><span class="nn">nomad_pydantic.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">NomadModel</span>
 </span><span id="line-11">
@@ -243,7 +243,7 @@
 </span><span id="line-39">
 </span><span id="line-40">
 </span><span id="line-41"><span class="k">class</span><span class="w"> </span><span class="nc">StatusModel</span><span class="p">(</span><span class="n">NomadModel</span><span class="p">):</span>
-</span><span id="line-42">    <span class="n">model_config</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">NomadModel</span><span class="o">.</span><span class="n">model_config</span><span class="p">,</span> <span class="s2">&quot;extra&quot;</span><span class="p">:</span> <span class="s2">&quot;ignore&quot;</span><span class="p">}</span>
+</span><span id="line-42">    <span class="n">model_config</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">ConfigDict</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">NomadModel</span><span class="o">.</span><span class="n">model_config</span><span class="p">,</span> <span class="s2">&quot;extra&quot;</span><span class="p">:</span> <span class="s2">&quot;ignore&quot;</span><span class="p">}</span>
 </span><span id="line-43">
 </span><span id="line-44">
 <div class="viewcode-block" id="TaskGroupStatus">

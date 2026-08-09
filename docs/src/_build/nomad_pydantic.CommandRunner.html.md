@@ -1,6 +1,6 @@
 # nomad_pydantic.CommandRunner
 
-### *class* nomad_pydantic.CommandRunner(\*args, \*\*kwargs)
+### *class* nomad_pydantic.CommandRunner(\*args, \*\*kwargs)[[source]](../../../_modules/nomad_pydantic/client.html.md#CommandRunner)
 
 Bases: `Protocol`
 

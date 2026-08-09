@@ -1,6 +1,6 @@
 # nomad_pydantic.TaskGroupStatus
 
-### *pydantic model* nomad_pydantic.TaskGroupStatus
+### *pydantic model* nomad_pydantic.TaskGroupStatus[[source]](../../../_modules/nomad_pydantic/client.html.md#TaskGroupStatus)
 
 Bases: `StatusModel`
 

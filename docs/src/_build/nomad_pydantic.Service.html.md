@@ -1,6 +1,6 @@
 # nomad_pydantic.Service
 
-### *pydantic model* nomad_pydantic.Service
+### *pydantic model* nomad_pydantic.Service[[source]](../../../_modules/nomad_pydantic/models.html.md#Service)
 
 Bases: `NomadModel`
 
@@ -18,4 +18,4 @@ Bases: `NomadModel`
 
 #### *field* meta *: dict[str, str]* *[Optional]* *(alias 'Meta')*
 
-#### *field* checks *: list[[ServiceCheck](nomad_pydantic.ServiceCheck.md#nomad_pydantic.ServiceCheck)]* *[Optional]* *(alias 'Checks')*
+#### *field* checks *: list[[ServiceCheck](nomad_pydantic.ServiceCheck.html.md#nomad_pydantic.ServiceCheck)]* *[Optional]* *(alias 'Checks')*

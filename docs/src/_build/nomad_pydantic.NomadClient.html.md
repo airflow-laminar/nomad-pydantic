@@ -1,12 +1,12 @@
 # nomad_pydantic.NomadClient
 
-### *class* nomad_pydantic.NomadClient(configuration: [NomadConfiguration](nomad_pydantic.NomadConfiguration.md#nomad_pydantic.NomadConfiguration), , runner: [CommandRunner](nomad_pydantic.CommandRunner.md#nomad_pydantic.CommandRunner) | None = None, executable: str = 'nomad')
+### *class* nomad_pydantic.NomadClient(configuration: [NomadConfiguration](nomad_pydantic.NomadConfiguration.html.md#nomad_pydantic.NomadConfiguration), , runner: [CommandRunner](nomad_pydantic.CommandRunner.html.md#nomad_pydantic.CommandRunner) | None = None, executable: str = 'nomad')[[source]](../../../_modules/nomad_pydantic/client.html.md#NomadClient)
 
 Bases: `object`
 
 Manage a configuration through the installed Nomad CLI.
 
-#### \_\_init_\_(configuration: [NomadConfiguration](nomad_pydantic.NomadConfiguration.md#nomad_pydantic.NomadConfiguration), , runner: [CommandRunner](nomad_pydantic.CommandRunner.md#nomad_pydantic.CommandRunner) | None = None, executable: str = 'nomad') → None
+#### \_\_init_\_(configuration: [NomadConfiguration](nomad_pydantic.NomadConfiguration.html.md#nomad_pydantic.NomadConfiguration), , runner: [CommandRunner](nomad_pydantic.CommandRunner.html.md#nomad_pydantic.CommandRunner) | None = None, executable: str = 'nomad') → None[[source]](../../../_modules/nomad_pydantic/client.html.md#NomadClient.__init__)
 
 ### Methods
 

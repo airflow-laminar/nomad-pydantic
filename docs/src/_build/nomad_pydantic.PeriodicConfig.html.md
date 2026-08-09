@@ -1,6 +1,6 @@
 # nomad_pydantic.PeriodicConfig
 
-### *pydantic model* nomad_pydantic.PeriodicConfig
+### *pydantic model* nomad_pydantic.PeriodicConfig[[source]](../../../_modules/nomad_pydantic/models.html.md#PeriodicConfig)
 
 Bases: `NomadModel`
 

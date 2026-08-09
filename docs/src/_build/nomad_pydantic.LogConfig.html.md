@@ -1,6 +1,6 @@
 # nomad_pydantic.LogConfig
 
-### *pydantic model* nomad_pydantic.LogConfig
+### *pydantic model* nomad_pydantic.LogConfig[[source]](../../../_modules/nomad_pydantic/models.html.md#LogConfig)
 
 Bases: `NomadModel`
 

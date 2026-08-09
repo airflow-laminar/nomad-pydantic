@@ -1,6 +1,6 @@
 # nomad_pydantic.Artifact
 
-### *pydantic model* nomad_pydantic.Artifact
+### *pydantic model* nomad_pydantic.Artifact[[source]](../../../_modules/nomad_pydantic/models.html.md#Artifact)
 
 Bases: `NomadModel`
 

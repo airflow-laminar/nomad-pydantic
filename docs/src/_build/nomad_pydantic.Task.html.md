@@ -1,6 +1,6 @@
 # nomad_pydantic.Task
 
-### *pydantic model* nomad_pydantic.Task
+### *pydantic model* nomad_pydantic.Task[[source]](../../../_modules/nomad_pydantic/models.html.md#Task)
 
 Bases: `NomadModel`
 
@@ -14,13 +14,13 @@ Bases: `NomadModel`
 
 #### *field* env *: dict[str, str]* *[Optional]* *(alias 'Env')*
 
-#### *field* services *: list[[Service](nomad_pydantic.Service.md#nomad_pydantic.Service)]* *[Optional]* *(alias 'Services')*
+#### *field* services *: list[[Service](nomad_pydantic.Service.html.md#nomad_pydantic.Service)]* *[Optional]* *(alias 'Services')*
 
-#### *field* resources *: [Resources](nomad_pydantic.Resources.md#nomad_pydantic.Resources)* *[Optional]* *(alias 'Resources')*
+#### *field* resources *: [Resources](nomad_pydantic.Resources.html.md#nomad_pydantic.Resources)* *[Optional]* *(alias 'Resources')*
 
-#### *field* restart_policy *: [RestartPolicy](nomad_pydantic.RestartPolicy.md#nomad_pydantic.RestartPolicy) | None* *= None* *(alias 'RestartPolicy')*
+#### *field* restart_policy *: [RestartPolicy](nomad_pydantic.RestartPolicy.html.md#nomad_pydantic.RestartPolicy) | None* *= None* *(alias 'RestartPolicy')*
 
-#### *field* lifecycle *: [Lifecycle](nomad_pydantic.Lifecycle.md#nomad_pydantic.Lifecycle) | None* *= None* *(alias 'Lifecycle')*
+#### *field* lifecycle *: [Lifecycle](nomad_pydantic.Lifecycle.html.md#nomad_pydantic.Lifecycle) | None* *= None* *(alias 'Lifecycle')*
 
 #### *field* meta *: dict[str, str]* *[Optional]* *(alias 'Meta')*
 
@@ -30,10 +30,10 @@ Bases: `NomadModel`
 
 #### *field* kill_signal *: str | None* *= None* *(alias 'KillSignal')*
 
-#### *field* log_config *: [LogConfig](nomad_pydantic.LogConfig.md#nomad_pydantic.LogConfig) | None* *= None* *(alias 'LogConfig')*
+#### *field* log_config *: [LogConfig](nomad_pydantic.LogConfig.html.md#nomad_pydantic.LogConfig) | None* *= None* *(alias 'LogConfig')*
 
-#### *field* templates *: list[[Template](nomad_pydantic.Template.md#nomad_pydantic.Template)]* *[Optional]* *(alias 'Templates')*
+#### *field* templates *: list[[Template](nomad_pydantic.Template.html.md#nomad_pydantic.Template)]* *[Optional]* *(alias 'Templates')*
 
-#### *field* artifacts *: list[[Artifact](nomad_pydantic.Artifact.md#nomad_pydantic.Artifact)]* *[Optional]* *(alias 'Artifacts')*
+#### *field* artifacts *: list[[Artifact](nomad_pydantic.Artifact.html.md#nomad_pydantic.Artifact)]* *[Optional]* *(alias 'Artifacts')*
 
-#### *field* volume_mounts *: list[[VolumeMount](nomad_pydantic.VolumeMount.md#nomad_pydantic.VolumeMount)]* *[Optional]* *(alias 'VolumeMounts')*
+#### *field* volume_mounts *: list[[VolumeMount](nomad_pydantic.VolumeMount.html.md#nomad_pydantic.VolumeMount)]* *[Optional]* *(alias 'VolumeMounts')*

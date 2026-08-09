@@ -1,6 +1,6 @@
 # nomad_pydantic.Template
 
-### *pydantic model* nomad_pydantic.Template
+### *pydantic model* nomad_pydantic.Template[[source]](../../../_modules/nomad_pydantic/models.html.md#Template)
 
 Bases: `NomadModel`
 

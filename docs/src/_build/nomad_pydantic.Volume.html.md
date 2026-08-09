@@ -1,6 +1,6 @@
 # nomad_pydantic.Volume
 
-### *pydantic model* nomad_pydantic.Volume
+### *pydantic model* nomad_pydantic.Volume[[source]](../../../_modules/nomad_pydantic/models.html.md#Volume)
 
 Bases: `NomadModel`
 

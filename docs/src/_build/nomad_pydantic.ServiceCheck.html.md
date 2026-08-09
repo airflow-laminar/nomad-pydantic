@@ -1,6 +1,6 @@
 # nomad_pydantic.ServiceCheck
 
-### *pydantic model* nomad_pydantic.ServiceCheck
+### *pydantic model* nomad_pydantic.ServiceCheck[[source]](../../../_modules/nomad_pydantic/models.html.md#ServiceCheck)
 
 Bases: `NomadModel`
 
@@ -38,4 +38,4 @@ Bases: `NomadModel`
 
 #### *field* on_update *: str | None* *= None* *(alias 'OnUpdate')*
 
-#### *field* check_restart *: [CheckRestart](nomad_pydantic.CheckRestart.md#nomad_pydantic.CheckRestart) | None* *= None* *(alias 'CheckRestart')*
+#### *field* check_restart *: [CheckRestart](nomad_pydantic.CheckRestart.html.md#nomad_pydantic.CheckRestart) | None* *= None* *(alias 'CheckRestart')*

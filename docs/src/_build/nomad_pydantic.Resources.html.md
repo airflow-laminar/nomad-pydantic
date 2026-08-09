@@ -1,6 +1,6 @@
 # nomad_pydantic.Resources
 
-### *pydantic model* nomad_pydantic.Resources
+### *pydantic model* nomad_pydantic.Resources[[source]](../../../_modules/nomad_pydantic/models.html.md#Resources)
 
 Bases: `NomadModel`
 
@@ -14,4 +14,4 @@ Bases: `NomadModel`
 
 #### *field* disk_mb *: int | None* *= None* *(alias 'DiskMB')*
 
-#### *field* networks *: list[[NetworkResource](nomad_pydantic.NetworkResource.md#nomad_pydantic.NetworkResource)]* *[Optional]* *(alias 'Networks')*
+#### *field* networks *: list[[NetworkResource](nomad_pydantic.NetworkResource.html.md#nomad_pydantic.NetworkResource)]* *[Optional]* *(alias 'Networks')*

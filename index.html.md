@@ -40,12 +40,12 @@ config.write()
 
 ## Documentation
 
-- [Tutorial](docs/src/tutorial.md) builds and renders a first job.
-- [How-to guides](docs/src/how-to.md) cover Hydra, periodic jobs, and lifecycle
+- [Tutorial](docs/src/tutorial.html.md) builds and renders a first job.
+- [How-to guides](docs/src/how-to.html.md) cover Hydra, periodic jobs, and lifecycle
   operations.
-- [Concepts](docs/src/explanation.md) explains the model hierarchy and JSON
+- [Concepts](docs/src/explanation.html.md) explains the model hierarchy and JSON
   boundary.
-- [API reference](docs/src/api.md) documents every public model and client.
+- [API reference](docs/src/api.html.md) documents every public model and client.
 
 ## Ecosystem
 

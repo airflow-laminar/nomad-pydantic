@@ -1,6 +1,6 @@
 # nomad_pydantic.NetworkPort
 
-### *pydantic model* nomad_pydantic.NetworkPort
+### *pydantic model* nomad_pydantic.NetworkPort[[source]](../../../_modules/nomad_pydantic/models.html.md#NetworkPort)
 
 Bases: `NomadModel`
 

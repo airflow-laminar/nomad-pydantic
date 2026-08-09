@@ -1,7 +1,7 @@
 # How-to guides
 
 These guides provide focused recipes for loading and operating Nomad jobs.
-Consult the [API reference](api.md) for the complete model surface.
+Consult the [API reference](api.html.md) for the complete model surface.
 
 ## How to load a job from Hydra YAML
 

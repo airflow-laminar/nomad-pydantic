@@ -1,6 +1,6 @@
 # nomad_pydantic.CommandResult
 
-### *class* nomad_pydantic.CommandResult(returncode: 'int', stdout: 'str', stderr: 'str')
+### *class* nomad_pydantic.CommandResult(returncode: 'int', stdout: 'str', stderr: 'str')[[source]](../../../_modules/nomad_pydantic/client.html.md#CommandResult)
 
 Bases: `object`
 

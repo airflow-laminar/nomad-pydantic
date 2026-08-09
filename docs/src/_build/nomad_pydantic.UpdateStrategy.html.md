@@ -1,6 +1,6 @@
 # nomad_pydantic.UpdateStrategy
 
-### *pydantic model* nomad_pydantic.UpdateStrategy
+### *pydantic model* nomad_pydantic.UpdateStrategy[[source]](../../../_modules/nomad_pydantic/models.html.md#UpdateStrategy)
 
 Bases: `NomadModel`
 

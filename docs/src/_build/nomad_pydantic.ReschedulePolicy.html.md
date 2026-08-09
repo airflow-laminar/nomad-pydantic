@@ -1,6 +1,6 @@
 # nomad_pydantic.ReschedulePolicy
 
-### *pydantic model* nomad_pydantic.ReschedulePolicy
+### *pydantic model* nomad_pydantic.ReschedulePolicy[[source]](../../../_modules/nomad_pydantic/models.html.md#ReschedulePolicy)
 
 Bases: `NomadModel`
 

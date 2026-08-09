@@ -1,6 +1,6 @@
 # nomad_pydantic.AllocationStatus
 
-### *pydantic model* nomad_pydantic.AllocationStatus
+### *pydantic model* nomad_pydantic.AllocationStatus[[source]](../../../_modules/nomad_pydantic/client.html.md#AllocationStatus)
 
 Bases: `StatusModel`
 

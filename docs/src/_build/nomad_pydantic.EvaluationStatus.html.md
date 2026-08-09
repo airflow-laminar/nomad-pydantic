@@ -1,6 +1,6 @@
 # nomad_pydantic.EvaluationStatus
 
-### *pydantic model* nomad_pydantic.EvaluationStatus
+### *pydantic model* nomad_pydantic.EvaluationStatus[[source]](../../../_modules/nomad_pydantic/client.html.md#EvaluationStatus)
 
 Bases: `StatusModel`
 

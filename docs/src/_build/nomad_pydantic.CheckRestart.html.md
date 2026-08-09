@@ -1,6 +1,6 @@
 # nomad_pydantic.CheckRestart
 
-### *pydantic model* nomad_pydantic.CheckRestart
+### *pydantic model* nomad_pydantic.CheckRestart[[source]](../../../_modules/nomad_pydantic/models.html.md#CheckRestart)
 
 Bases: `NomadModel`
 

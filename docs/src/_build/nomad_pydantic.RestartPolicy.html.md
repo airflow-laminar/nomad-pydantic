@@ -1,6 +1,6 @@
 # nomad_pydantic.RestartPolicy
 
-### *pydantic model* nomad_pydantic.RestartPolicy
+### *pydantic model* nomad_pydantic.RestartPolicy[[source]](../../../_modules/nomad_pydantic/models.html.md#RestartPolicy)
 
 Bases: `NomadModel`
 

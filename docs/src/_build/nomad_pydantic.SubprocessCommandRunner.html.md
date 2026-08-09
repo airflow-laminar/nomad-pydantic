@@ -1,6 +1,6 @@
 # nomad_pydantic.SubprocessCommandRunner
 
-### *class* nomad_pydantic.SubprocessCommandRunner
+### *class* nomad_pydantic.SubprocessCommandRunner[[source]](../../../_modules/nomad_pydantic/client.html.md#SubprocessCommandRunner)
 
 Bases: `object`
 

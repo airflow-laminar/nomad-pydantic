@@ -1,6 +1,6 @@
 # nomad_pydantic.DeploymentStatus
 
-### *pydantic model* nomad_pydantic.DeploymentStatus
+### *pydantic model* nomad_pydantic.DeploymentStatus[[source]](../../../_modules/nomad_pydantic/client.html.md#DeploymentStatus)
 
 Bases: `StatusModel`
 

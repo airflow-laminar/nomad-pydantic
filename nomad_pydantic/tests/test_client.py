@@ -216,8 +216,8 @@ def test_client_raises_useful_error(configuration: NomadConfiguration) -> None:
 
 
 def test_subprocess_runner(monkeypatch: pytest.MonkeyPatch) -> None:
-    def run(*args: object, **kwargs: object) -> subprocess.CompletedProcess[str]:
-        return subprocess.CompletedProcess(["nomad", "version"], 0, "Nomad v1", "")
+    def run(*args: object, **kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        return subprocess.CompletedProcess(["nomad", "version"], 0, b"Nomad v1", b"")
 
     monkeypatch.setattr(subprocess, "run", run)
 

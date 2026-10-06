@@ -112,3 +112,28 @@ class FakeRunner:
 client = NomadClient(config, runner=FakeRunner())
 assert client.status().running
 ```
+
+## How to read allocation logs incrementally
+
+Use `read_logs()` with per-file byte offsets. Grant the Nomad CLI token
+`read-fs` capability in the job's namespace before reading allocation files.
+
+```python
+from nomad_pydantic import NomadConfiguration
+
+client = NomadConfiguration.from_file("build/report.json").client()
+allocation = client.status().current_allocations[0]
+offsets = {}
+
+for chunk in client.read_logs(
+    allocation.id, "report", "stdout", offsets=offsets, limit=65536
+):
+    print(chunk.data.decode("utf-8", errors="replace"), end="")
+    offsets[chunk.file] = chunk.offset + len(chunk.data)
+```
+
+Call again with the same `offsets` to read new bytes. Keep separate offsets for
+each allocation, task, and stream. Replace `"stdout"` with `"stderr"` to read
+errors. Rotated files retain their own offsets; a truncated file restarts at
+zero and sets `chunk.truncated`. Data is returned as bytes so a read ending
+inside a UTF-8 character does not change the next offset.

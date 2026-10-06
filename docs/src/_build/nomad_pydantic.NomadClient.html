@@ -109,6 +109,9 @@
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.JobSummary.html">nomad_pydantic.JobSummary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.TaskGroupStatus.html">nomad_pydantic.TaskGroupStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.AllocationStatus.html">nomad_pydantic.AllocationStatus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.TaskState.html">nomad_pydantic.TaskState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.TaskEvent.html">nomad_pydantic.TaskEvent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.LogChunk.html">nomad_pydantic.LogChunk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.DeploymentStatus.html">nomad_pydantic.DeploymentStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.EvaluationStatus.html">nomad_pydantic.EvaluationStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.CommandResult.html">nomad_pydantic.CommandResult</a></li>
@@ -160,22 +163,25 @@
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">force_periodic</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">register</span></code>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_logs</span></code>(allocation_id, task, stream, *[, ...])</p></td>
+<td><p>Read at most <code class="docutils literal notranslate"><span class="pre">limit</span></code> bytes across retained log files, oldest first.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">register</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">restart</span></code>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">restart</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">start</span></code>()</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">start</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">status</span></code>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">status</span></code>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop</span></code>(*[, purge])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop</span></code>(*[, purge])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate</span></code>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate</span></code>()</p></td>
 <td><p></p></td>
 </tr>
 </tbody>

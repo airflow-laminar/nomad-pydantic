@@ -109,6 +109,9 @@
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.JobSummary.html">nomad_pydantic.JobSummary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.TaskGroupStatus.html">nomad_pydantic.TaskGroupStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.AllocationStatus.html">nomad_pydantic.AllocationStatus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.TaskState.html">nomad_pydantic.TaskState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.TaskEvent.html">nomad_pydantic.TaskEvent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.LogChunk.html">nomad_pydantic.LogChunk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.DeploymentStatus.html">nomad_pydantic.DeploymentStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.EvaluationStatus.html">nomad_pydantic.EvaluationStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.CommandResult.html">nomad_pydantic.CommandResult</a></li>
@@ -228,22 +231,31 @@
 <tr class="row-even"><td><p><a class="reference internal" href="_build/nomad_pydantic.AllocationStatus.html#nomad_pydantic.AllocationStatus" title="nomad_pydantic.AllocationStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AllocationStatus</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_build/nomad_pydantic.DeploymentStatus.html#nomad_pydantic.DeploymentStatus" title="nomad_pydantic.DeploymentStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeploymentStatus</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_build/nomad_pydantic.TaskState.html#nomad_pydantic.TaskState" title="nomad_pydantic.TaskState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TaskState</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_build/nomad_pydantic.EvaluationStatus.html#nomad_pydantic.EvaluationStatus" title="nomad_pydantic.EvaluationStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EvaluationStatus</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_build/nomad_pydantic.TaskEvent.html#nomad_pydantic.TaskEvent" title="nomad_pydantic.TaskEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TaskEvent</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_build/nomad_pydantic.CommandResult.html#nomad_pydantic.CommandResult" title="nomad_pydantic.CommandResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CommandResult</span></code></a>(returncode, stdout, stderr)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_build/nomad_pydantic.LogChunk.html#nomad_pydantic.LogChunk" title="nomad_pydantic.LogChunk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogChunk</span></code></a>(file, offset, data[, truncated])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_build/nomad_pydantic.CommandRunner.html#nomad_pydantic.CommandRunner" title="nomad_pydantic.CommandRunner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CommandRunner</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_build/nomad_pydantic.DeploymentStatus.html#nomad_pydantic.DeploymentStatus" title="nomad_pydantic.DeploymentStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeploymentStatus</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_build/nomad_pydantic.SubprocessCommandRunner.html#nomad_pydantic.SubprocessCommandRunner" title="nomad_pydantic.SubprocessCommandRunner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubprocessCommandRunner</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_build/nomad_pydantic.EvaluationStatus.html#nomad_pydantic.EvaluationStatus" title="nomad_pydantic.EvaluationStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EvaluationStatus</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_build/nomad_pydantic.NomadCommandError.html#nomad_pydantic.NomadCommandError" title="nomad_pydantic.NomadCommandError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NomadCommandError</span></code></a>(command, result)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_build/nomad_pydantic.CommandResult.html#nomad_pydantic.CommandResult" title="nomad_pydantic.CommandResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CommandResult</span></code></a>(returncode, stdout, stderr)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_build/nomad_pydantic.CommandRunner.html#nomad_pydantic.CommandRunner" title="nomad_pydantic.CommandRunner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CommandRunner</span></code></a>(*args, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_build/nomad_pydantic.SubprocessCommandRunner.html#nomad_pydantic.SubprocessCommandRunner" title="nomad_pydantic.SubprocessCommandRunner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubprocessCommandRunner</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_build/nomad_pydantic.NomadCommandError.html#nomad_pydantic.NomadCommandError" title="nomad_pydantic.NomadCommandError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NomadCommandError</span></code></a>(command, result)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>

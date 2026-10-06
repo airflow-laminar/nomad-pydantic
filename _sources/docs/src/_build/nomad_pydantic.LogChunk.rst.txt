@@ -1,0 +1,31 @@
+﻿nomad\_pydantic.LogChunk
+========================
+
+.. currentmodule:: nomad_pydantic
+
+.. autoclass:: LogChunk
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LogChunk.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LogChunk.truncated
+      ~LogChunk.file
+      ~LogChunk.offset
+      ~LogChunk.data
+   
+   

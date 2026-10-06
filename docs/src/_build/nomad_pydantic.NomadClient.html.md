@@ -10,12 +10,13 @@ Manage a configuration through the installed Nomad CLI.
 
 ### Methods
 
-| [`__init__`](#nomad_pydantic.NomadClient.__init__)(configuration, \*[, runner, executable])   |    |
-|-----------------------------------------------------------------------------------------------|----|
-| `force_periodic`()                                                                            |    |
-| `register`()                                                                                  |    |
-| `restart`()                                                                                   |    |
-| `start`()                                                                                     |    |
-| `status`()                                                                                    |    |
-| `stop`(\*[, purge])                                                                           |    |
-| `validate`()                                                                                  |    |
+| [`__init__`](#nomad_pydantic.NomadClient.__init__)(configuration, \*[, runner, executable])   |                                                                     |
+|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `force_periodic`()                                                                            |                                                                     |
+| `read_logs`(allocation_id, task, stream, \*[, ...])                                           | Read at most `limit` bytes across retained log files, oldest first. |
+| `register`()                                                                                  |                                                                     |
+| `restart`()                                                                                   |                                                                     |
+| `start`()                                                                                     |                                                                     |
+| `status`()                                                                                    |                                                                     |
+| `stop`(\*[, purge])                                                                           |                                                                     |
+| `validate`()                                                                                  |                                                                     |

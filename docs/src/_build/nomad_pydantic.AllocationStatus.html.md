@@ -13,3 +13,5 @@ Bases: `StatusModel`
 #### *field* desired_status *: str* *[Required]* *(alias 'DesiredStatus')*
 
 #### *field* client_status *: str* *[Required]* *(alias 'ClientStatus')*
+
+#### *field* task_states *: dict[str, [TaskState](nomad_pydantic.TaskState.html.md#nomad_pydantic.TaskState)]* *[Optional]* *(alias 'TaskStates')*

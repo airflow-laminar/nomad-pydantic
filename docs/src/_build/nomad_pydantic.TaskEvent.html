@@ -21,9 +21,9 @@
 <meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color"/>
 <meta content="#030711" media="(prefers-color-scheme: dark)" name="theme-color"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>nomad_pydantic.Template | nomad-pydantic v0.1.1</title>
-<meta content="nomad_pydantic.Template | nomad-pydantic v0.1.1" property="og:title"/>
-<meta content="nomad_pydantic.Template | nomad-pydantic v0.1.1" name="twitter:title"/>
+<title>nomad_pydantic.TaskEvent | nomad-pydantic v0.1.1</title>
+<meta content="nomad_pydantic.TaskEvent | nomad-pydantic v0.1.1" property="og:title"/>
+<meta content="nomad_pydantic.TaskEvent | nomad-pydantic v0.1.1" name="twitter:title"/>
 <link href="../../../_static/pygments.css?v=03e43079" rel="stylesheet" type="text/css"/>
 <link href="../../../_static/theme.css?v=d6d7c91b" rel="stylesheet" type="text/css"/>
 <link href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" rel="stylesheet" type="text/css"/>
@@ -37,8 +37,8 @@
 <link href="../../../_static/awesome-myst-nb.css?v=7c7ea10c" rel="stylesheet" type="text/css"/>
 <link href="../../../search.html" rel="search" title="Search"/>
 <link href="../../../genindex.html" rel="index" title="Index"/>
-<link href="nomad_pydantic.Artifact.html" rel="next" title="nomad_pydantic.Artifact"/>
-<link href="nomad_pydantic.LogConfig.html" rel="prev" title="nomad_pydantic.LogConfig"/>
+<link href="nomad_pydantic.LogChunk.html" rel="next" title="nomad_pydantic.LogChunk"/>
+<link href="nomad_pydantic.TaskState.html" rel="prev" title="nomad_pydantic.TaskState"/>
 </head>
 <body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false, showScrollTop: false }">
 <div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
@@ -99,7 +99,7 @@
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.CheckRestart.html">nomad_pydantic.CheckRestart</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.Lifecycle.html">nomad_pydantic.Lifecycle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.LogConfig.html">nomad_pydantic.LogConfig</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">nomad_pydantic.Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.Template.html">nomad_pydantic.Template</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.Artifact.html">nomad_pydantic.Artifact</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.Volume.html">nomad_pydantic.Volume</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.VolumeMount.html">nomad_pydantic.VolumeMount</a></li>
@@ -110,7 +110,7 @@
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.TaskGroupStatus.html">nomad_pydantic.TaskGroupStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.AllocationStatus.html">nomad_pydantic.AllocationStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.TaskState.html">nomad_pydantic.TaskState</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.TaskEvent.html">nomad_pydantic.TaskEvent</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nomad_pydantic.TaskEvent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.LogChunk.html">nomad_pydantic.LogChunk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.DeploymentStatus.html">nomad_pydantic.DeploymentStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.EvaluationStatus.html">nomad_pydantic.EvaluationStatus</a></li>
@@ -140,56 +140,41 @@
 </svg>
 </a>
 <div class="mr-1">/</div><a class="hover:text-foreground overflow-hidden text-ellipsis whitespace-nowrap" href="../api.html">API reference</a>
-<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">nomad_pydantic.Template</span>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">nomad_pydantic.TaskEvent</span>
 </nav>
 <div id="content" role="main">
-<section id="nomad-pydantic-template">
-<h1>nomad_pydantic.Template<a class="headerlink" href="#nomad-pydantic-template" title="Link to this heading">¶</a></h1>
+<section id="nomad-pydantic-taskevent">
+<h1>nomad_pydantic.TaskEvent<a class="headerlink" href="#nomad-pydantic-taskevent" title="Link to this heading">¶</a></h1>
 <dl class="py class pydantic_model">
-<dt class="sig sig-object py" id="nomad_pydantic.Template">
-<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nomad_pydantic.</span></span><span class="sig-name descname"><span class="pre">Template</span></span><a class="reference internal" href="../../../_modules/nomad_pydantic/models.html#Template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nomad_pydantic.Template" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.Template'">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NomadModel</span></code></p>
+<dt class="sig sig-object py" id="nomad_pydantic.TaskEvent">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nomad_pydantic.</span></span><span class="sig-name descname"><span class="pre">TaskEvent</span></span><a class="reference internal" href="../../../_modules/nomad_pydantic/client.html#TaskEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nomad_pydantic.TaskEvent" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.TaskEvent'">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">StatusModel</span></code></p>
 <dl class="py attribute pydantic_field">
-<dt class="sig sig-object py" id="nomad_pydantic.Template.source_path">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'SourcePath')</span></em><a class="headerlink" href="#nomad_pydantic.Template.source_path" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.Template.source_path'">¶</a></dt>
+<dt class="sig sig-object py" id="nomad_pydantic.TaskEvent.type">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'Type')</span></em><a class="headerlink" href="#nomad_pydantic.TaskEvent.type" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.TaskEvent.type'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute pydantic_field">
-<dt class="sig sig-object py" id="nomad_pydantic.Template.destination">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'Destination')</span></em><a class="headerlink" href="#nomad_pydantic.Template.destination" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.Template.destination'">¶</a></dt>
+<dt class="sig sig-object py" id="nomad_pydantic.TaskEvent.display_message">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">display_message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'DisplayMessage')</span></em><a class="headerlink" href="#nomad_pydantic.TaskEvent.display_message" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.TaskEvent.display_message'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute pydantic_field">
-<dt class="sig sig-object py" id="nomad_pydantic.Template.embedded_tmpl">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">embedded_tmpl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'EmbeddedTmpl')</span></em><a class="headerlink" href="#nomad_pydantic.Template.embedded_tmpl" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.Template.embedded_tmpl'">¶</a></dt>
+<dt class="sig sig-object py" id="nomad_pydantic.TaskEvent.exit_code">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exit_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'ExitCode')</span></em><a class="headerlink" href="#nomad_pydantic.TaskEvent.exit_code" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.TaskEvent.exit_code'">¶</a></dt>
 <dd></dd></dl>
 <dl class="py attribute pydantic_field">
-<dt class="sig sig-object py" id="nomad_pydantic.Template.change_mode">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">change_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'noop'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'restart'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'signal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'script'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'ChangeMode')</span></em><a class="headerlink" href="#nomad_pydantic.Template.change_mode" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.Template.change_mode'">¶</a></dt>
-<dd></dd></dl>
-<dl class="py attribute pydantic_field">
-<dt class="sig sig-object py" id="nomad_pydantic.Template.change_signal">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">change_signal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'ChangeSignal')</span></em><a class="headerlink" href="#nomad_pydantic.Template.change_signal" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.Template.change_signal'">¶</a></dt>
-<dd></dd></dl>
-<dl class="py attribute pydantic_field">
-<dt class="sig sig-object py" id="nomad_pydantic.Template.perms">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">perms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'Perms')</span></em><a class="headerlink" href="#nomad_pydantic.Template.perms" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.Template.perms'">¶</a></dt>
-<dd></dd></dl>
-<dl class="py attribute pydantic_field">
-<dt class="sig sig-object py" id="nomad_pydantic.Template.envvars">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">envvars</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'Envvars')</span></em><a class="headerlink" href="#nomad_pydantic.Template.envvars" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.Template.envvars'">¶</a></dt>
+<dt class="sig sig-object py" id="nomad_pydantic.TaskEvent.signal">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">signal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'Signal')</span></em><a class="headerlink" href="#nomad_pydantic.TaskEvent.signal" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.TaskEvent.signal'">¶</a></dt>
 <dd></dd></dl>
 </dd></dl>
 </section>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] h-full overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
 <ul>
-<li><a :data-current="activeSection === '#nomad_pydantic.Template'" class="reference internal" href="#nomad_pydantic.Template"><code class="docutils literal notranslate"><span class="pre">Template</span></code></a><ul>
-<li><a :data-current="activeSection === '#nomad_pydantic.Template.source_path'" class="reference internal" href="#nomad_pydantic.Template.source_path"><code class="docutils literal notranslate"><span class="pre">Template.source_path</span></code></a></li>
-<li><a :data-current="activeSection === '#nomad_pydantic.Template.destination'" class="reference internal" href="#nomad_pydantic.Template.destination"><code class="docutils literal notranslate"><span class="pre">Template.destination</span></code></a></li>
-<li><a :data-current="activeSection === '#nomad_pydantic.Template.embedded_tmpl'" class="reference internal" href="#nomad_pydantic.Template.embedded_tmpl"><code class="docutils literal notranslate"><span class="pre">Template.embedded_tmpl</span></code></a></li>
-<li><a :data-current="activeSection === '#nomad_pydantic.Template.change_mode'" class="reference internal" href="#nomad_pydantic.Template.change_mode"><code class="docutils literal notranslate"><span class="pre">Template.change_mode</span></code></a></li>
-<li><a :data-current="activeSection === '#nomad_pydantic.Template.change_signal'" class="reference internal" href="#nomad_pydantic.Template.change_signal"><code class="docutils literal notranslate"><span class="pre">Template.change_signal</span></code></a></li>
-<li><a :data-current="activeSection === '#nomad_pydantic.Template.perms'" class="reference internal" href="#nomad_pydantic.Template.perms"><code class="docutils literal notranslate"><span class="pre">Template.perms</span></code></a></li>
-<li><a :data-current="activeSection === '#nomad_pydantic.Template.envvars'" class="reference internal" href="#nomad_pydantic.Template.envvars"><code class="docutils literal notranslate"><span class="pre">Template.envvars</span></code></a></li>
+<li><a :data-current="activeSection === '#nomad_pydantic.TaskEvent'" class="reference internal" href="#nomad_pydantic.TaskEvent"><code class="docutils literal notranslate"><span class="pre">TaskEvent</span></code></a><ul>
+<li><a :data-current="activeSection === '#nomad_pydantic.TaskEvent.type'" class="reference internal" href="#nomad_pydantic.TaskEvent.type"><code class="docutils literal notranslate"><span class="pre">TaskEvent.type</span></code></a></li>
+<li><a :data-current="activeSection === '#nomad_pydantic.TaskEvent.display_message'" class="reference internal" href="#nomad_pydantic.TaskEvent.display_message"><code class="docutils literal notranslate"><span class="pre">TaskEvent.display_message</span></code></a></li>
+<li><a :data-current="activeSection === '#nomad_pydantic.TaskEvent.exit_code'" class="reference internal" href="#nomad_pydantic.TaskEvent.exit_code"><code class="docutils literal notranslate"><span class="pre">TaskEvent.exit_code</span></code></a></li>
+<li><a :data-current="activeSection === '#nomad_pydantic.TaskEvent.signal'" class="reference internal" href="#nomad_pydantic.TaskEvent.signal"><code class="docutils literal notranslate"><span class="pre">TaskEvent.signal</span></code></a></li>
 </ul>
 </li>
 </ul>

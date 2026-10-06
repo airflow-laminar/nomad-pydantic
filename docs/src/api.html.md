@@ -34,6 +34,9 @@ The public API is re-exported from `nomad_pydantic`.
 | [`JobSummary`](_build/nomad_pydantic.JobSummary.html.md#nomad_pydantic.JobSummary)                                          |                                                                       |
 | [`TaskGroupStatus`](_build/nomad_pydantic.TaskGroupStatus.html.md#nomad_pydantic.TaskGroupStatus)                           |                                                                       |
 | [`AllocationStatus`](_build/nomad_pydantic.AllocationStatus.html.md#nomad_pydantic.AllocationStatus)                        |                                                                       |
+| [`TaskState`](_build/nomad_pydantic.TaskState.html.md#nomad_pydantic.TaskState)                                             |                                                                       |
+| [`TaskEvent`](_build/nomad_pydantic.TaskEvent.html.md#nomad_pydantic.TaskEvent)                                             |                                                                       |
+| [`LogChunk`](_build/nomad_pydantic.LogChunk.html.md#nomad_pydantic.LogChunk)(file, offset, data[, truncated])               |                                                                       |
 | [`DeploymentStatus`](_build/nomad_pydantic.DeploymentStatus.html.md#nomad_pydantic.DeploymentStatus)                        |                                                                       |
 | [`EvaluationStatus`](_build/nomad_pydantic.EvaluationStatus.html.md#nomad_pydantic.EvaluationStatus)                        |                                                                       |
 | [`CommandResult`](_build/nomad_pydantic.CommandResult.html.md#nomad_pydantic.CommandResult)(returncode, stdout, stderr)     |                                                                       |

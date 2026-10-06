@@ -37,7 +37,7 @@
 <link href="../../../_static/awesome-myst-nb.css?v=7c7ea10c" rel="stylesheet" type="text/css"/>
 <link href="../../../search.html" rel="search" title="Search"/>
 <link href="../../../genindex.html" rel="index" title="Index"/>
-<link href="nomad_pydantic.DeploymentStatus.html" rel="next" title="nomad_pydantic.DeploymentStatus"/>
+<link href="nomad_pydantic.TaskState.html" rel="next" title="nomad_pydantic.TaskState"/>
 <link href="nomad_pydantic.TaskGroupStatus.html" rel="prev" title="nomad_pydantic.TaskGroupStatus"/>
 </head>
 <body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false, showScrollTop: false }">
@@ -109,6 +109,9 @@
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.JobSummary.html">nomad_pydantic.JobSummary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.TaskGroupStatus.html">nomad_pydantic.TaskGroupStatus</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">nomad_pydantic.AllocationStatus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.TaskState.html">nomad_pydantic.TaskState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.TaskEvent.html">nomad_pydantic.TaskEvent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.LogChunk.html">nomad_pydantic.LogChunk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.DeploymentStatus.html">nomad_pydantic.DeploymentStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.EvaluationStatus.html">nomad_pydantic.EvaluationStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nomad_pydantic.CommandResult.html">nomad_pydantic.CommandResult</a></li>
@@ -166,6 +169,10 @@
 <dt class="sig sig-object py" id="nomad_pydantic.AllocationStatus.client_status">
 <em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">client_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'ClientStatus')</span></em><a class="headerlink" href="#nomad_pydantic.AllocationStatus.client_status" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.AllocationStatus.client_status'">¶</a></dt>
 <dd></dd></dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="nomad_pydantic.AllocationStatus.task_states">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_states</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="nomad_pydantic.TaskState.html#nomad_pydantic.TaskState" title="nomad_pydantic.TaskState"><span class="pre">TaskState</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'TaskStates')</span></em><a class="headerlink" href="#nomad_pydantic.AllocationStatus.task_states" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#nomad_pydantic.AllocationStatus.task_states'">¶</a></dt>
+<dd></dd></dl>
 </dd></dl>
 </section>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
@@ -177,6 +184,7 @@
 <li><a :data-current="activeSection === '#nomad_pydantic.AllocationStatus.task_group'" class="reference internal" href="#nomad_pydantic.AllocationStatus.task_group"><code class="docutils literal notranslate"><span class="pre">AllocationStatus.task_group</span></code></a></li>
 <li><a :data-current="activeSection === '#nomad_pydantic.AllocationStatus.desired_status'" class="reference internal" href="#nomad_pydantic.AllocationStatus.desired_status"><code class="docutils literal notranslate"><span class="pre">AllocationStatus.desired_status</span></code></a></li>
 <li><a :data-current="activeSection === '#nomad_pydantic.AllocationStatus.client_status'" class="reference internal" href="#nomad_pydantic.AllocationStatus.client_status"><code class="docutils literal notranslate"><span class="pre">AllocationStatus.client_status</span></code></a></li>
+<li><a :data-current="activeSection === '#nomad_pydantic.AllocationStatus.task_states'" class="reference internal" href="#nomad_pydantic.AllocationStatus.task_states"><code class="docutils literal notranslate"><span class="pre">AllocationStatus.task_states</span></code></a></li>
 </ul>
 </li>
 </ul>

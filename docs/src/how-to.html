@@ -109,6 +109,9 @@
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.JobSummary.html">nomad_pydantic.JobSummary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.TaskGroupStatus.html">nomad_pydantic.TaskGroupStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.AllocationStatus.html">nomad_pydantic.AllocationStatus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.TaskState.html">nomad_pydantic.TaskState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.TaskEvent.html">nomad_pydantic.TaskEvent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.LogChunk.html">nomad_pydantic.LogChunk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.DeploymentStatus.html">nomad_pydantic.DeploymentStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.EvaluationStatus.html">nomad_pydantic.EvaluationStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_build/nomad_pydantic.CommandResult.html">nomad_pydantic.CommandResult</a></li>
@@ -243,6 +246,29 @@ authentication.</p>
 </span></code></pre></div>
 </div>
 </section>
+<section id="how-to-read-allocation-logs-incrementally">
+<h2>How to read allocation logs incrementally<a class="headerlink" href="#how-to-read-allocation-logs-incrementally" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#how-to-read-allocation-logs-incrementally'">¶</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">read_logs()</span></code> with per-file byte offsets. Grant the Nomad CLI token
+<code class="docutils literal notranslate"><span class="pre">read-fs</span></code> capability in the job’s namespace before reading allocation files.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">nomad_pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">NomadConfiguration</span>
+</span><span id="line-2">
+</span><span id="line-3"><span class="n">client</span> <span class="o">=</span> <span class="n">NomadConfiguration</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">"build/report.json"</span><span class="p">)</span><span class="o">.</span><span class="n">client</span><span class="p">()</span>
+</span><span id="line-4"><span class="n">allocation</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">status</span><span class="p">()</span><span class="o">.</span><span class="n">current_allocations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="line-5"><span class="n">offsets</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="line-6">
+</span><span id="line-7"><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">read_logs</span><span class="p">(</span>
+</span><span id="line-8">    <span class="n">allocation</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">"report"</span><span class="p">,</span> <span class="s2">"stdout"</span><span class="p">,</span> <span class="n">offsets</span><span class="o">=</span><span class="n">offsets</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">65536</span>
+</span><span id="line-9"><span class="p">):</span>
+</span><span id="line-10">    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"replace"</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+</span><span id="line-11">    <span class="n">offsets</span><span class="p">[</span><span class="n">chunk</span><span class="o">.</span><span class="n">file</span><span class="p">]</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">offset</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<p>Call again with the same <code class="docutils literal notranslate"><span class="pre">offsets</span></code> to read new bytes. Keep separate offsets for
+each allocation, task, and stream. Replace <code class="docutils literal notranslate"><span class="pre">"stdout"</span></code> with <code class="docutils literal notranslate"><span class="pre">"stderr"</span></code> to read
+errors. Rotated files retain their own offsets; a truncated file restarts at
+zero and sets <code class="docutils literal notranslate"><span class="pre">chunk.truncated</span></code>. Data is returned as bytes so a read ending
+inside a UTF-8 character does not change the next offset.</p>
+</section>
 </section>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] h-full overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
@@ -251,6 +277,7 @@ authentication.</p>
 <li><a :data-current="activeSection === '#how-to-schedule-a-periodic-job'" class="reference internal" href="#how-to-schedule-a-periodic-job">How to schedule a periodic job</a></li>
 <li><a :data-current="activeSection === '#how-to-register-and-manage-a-job'" class="reference internal" href="#how-to-register-and-manage-a-job">How to register and manage a job</a></li>
 <li><a :data-current="activeSection === '#how-to-test-lifecycle-code-without-nomad'" class="reference internal" href="#how-to-test-lifecycle-code-without-nomad">How to test lifecycle code without Nomad</a></li>
+<li><a :data-current="activeSection === '#how-to-read-allocation-logs-incrementally'" class="reference internal" href="#how-to-read-allocation-logs-incrementally">How to read allocation logs incrementally</a></li>
 </ul>
 </div>
 </aside>

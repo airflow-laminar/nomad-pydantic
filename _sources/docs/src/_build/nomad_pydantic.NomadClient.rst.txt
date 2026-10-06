@@ -15,6 +15,7 @@
    
       ~NomadClient.__init__
       ~NomadClient.force_periodic
+      ~NomadClient.read_logs
       ~NomadClient.register
       ~NomadClient.restart
       ~NomadClient.start

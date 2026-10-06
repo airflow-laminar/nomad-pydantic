@@ -141,6 +141,9 @@
 <li class="toctree-l2"><a class="reference internal" href="docs/src/_build/nomad_pydantic.JobSummary.html">nomad_pydantic.JobSummary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/src/_build/nomad_pydantic.TaskGroupStatus.html">nomad_pydantic.TaskGroupStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/src/_build/nomad_pydantic.AllocationStatus.html">nomad_pydantic.AllocationStatus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/src/_build/nomad_pydantic.TaskState.html">nomad_pydantic.TaskState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/src/_build/nomad_pydantic.TaskEvent.html">nomad_pydantic.TaskEvent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/src/_build/nomad_pydantic.LogChunk.html">nomad_pydantic.LogChunk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/src/_build/nomad_pydantic.DeploymentStatus.html">nomad_pydantic.DeploymentStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/src/_build/nomad_pydantic.EvaluationStatus.html">nomad_pydantic.EvaluationStatus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/src/_build/nomad_pydantic.CommandResult.html">nomad_pydantic.CommandResult</a></li>
@@ -196,6 +199,8 @@
 
       <ul style="list-style-type:none">
         <li><a href="docs/src/_build/nomad_pydantic.CommandRunner.html#nomad_pydantic.CommandRunner.__init__">(nomad_pydantic.CommandRunner method)</a>
+</li>
+        <li><a href="docs/src/_build/nomad_pydantic.LogChunk.html#nomad_pydantic.LogChunk.__init__">(nomad_pydantic.LogChunk method)</a>
 </li>
         <li><a href="docs/src/_build/nomad_pydantic.NomadClient.html#nomad_pydantic.NomadClient.__init__">(nomad_pydantic.NomadClient method)</a>
 </li>
@@ -330,6 +335,8 @@
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.Resources.html#nomad_pydantic.Resources.disk_mb">disk_mb (nomad_pydantic.Resources attribute)</a>
 </li>
+      <li><a href="docs/src/_build/nomad_pydantic.TaskEvent.html#nomad_pydantic.TaskEvent.display_message">display_message (nomad_pydantic.TaskEvent attribute)</a>
+</li>
       <li><a href="docs/src/_build/nomad_pydantic.NetworkResource.html#nomad_pydantic.NetworkResource.dns">dns (nomad_pydantic.NetworkResource attribute)</a>
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.Task.html#nomad_pydantic.Task.driver">driver (nomad_pydantic.Task attribute)</a>
@@ -347,13 +354,17 @@
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.PeriodicConfig.html#nomad_pydantic.PeriodicConfig.enabled">enabled (nomad_pydantic.PeriodicConfig attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="docs/src/_build/nomad_pydantic.Task.html#nomad_pydantic.Task.env">env (nomad_pydantic.Task attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="docs/src/_build/nomad_pydantic.Template.html#nomad_pydantic.Template.envvars">envvars (nomad_pydantic.Template attribute)</a>
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.JobStatus.html#nomad_pydantic.JobStatus.evaluations">evaluations (nomad_pydantic.JobStatus attribute)</a>
+</li>
+      <li><a href="docs/src/_build/nomad_pydantic.TaskState.html#nomad_pydantic.TaskState.events">events (nomad_pydantic.TaskState attribute)</a>
+</li>
+      <li><a href="docs/src/_build/nomad_pydantic.TaskEvent.html#nomad_pydantic.TaskEvent.exit_code">exit_code (nomad_pydantic.TaskEvent attribute)</a>
 </li>
   </ul></td>
   </tr>
@@ -366,6 +377,8 @@
 
       <ul style="list-style-type:none">
         <li><a href="docs/src/_build/nomad_pydantic.TaskGroupStatus.html#nomad_pydantic.TaskGroupStatus.failed">(nomad_pydantic.TaskGroupStatus attribute)</a>
+</li>
+        <li><a href="docs/src/_build/nomad_pydantic.TaskState.html#nomad_pydantic.TaskState.failed">(nomad_pydantic.TaskState attribute)</a>
 </li>
       </ul></li>
       <li><a href="docs/src/_build/nomad_pydantic.EvaluationStatus.html#nomad_pydantic.EvaluationStatus.failed_task_group_allocations">failed_task_group_allocations (nomad_pydantic.EvaluationStatus attribute)</a>
@@ -498,13 +511,15 @@
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.Task.html#nomad_pydantic.Task.lifecycle">lifecycle (nomad_pydantic.Task attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="docs/src/_build/nomad_pydantic.CheckRestart.html#nomad_pydantic.CheckRestart.limit">limit (nomad_pydantic.CheckRestart attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="docs/src/_build/nomad_pydantic.NomadConfiguration.html#nomad_pydantic.NomadConfiguration.load">load() (nomad_pydantic.NomadConfiguration class method)</a>
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.Task.html#nomad_pydantic.Task.log_config">log_config (nomad_pydantic.Task attribute)</a>
+</li>
+      <li><a href="docs/src/_build/nomad_pydantic.LogChunk.html#nomad_pydantic.LogChunk">LogChunk (class in nomad_pydantic)</a>
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.TaskGroupStatus.html#nomad_pydantic.TaskGroupStatus.lost">lost (nomad_pydantic.TaskGroupStatus attribute)</a>
 </li>
@@ -719,6 +734,8 @@
       </ul></li>
       <li><a href="docs/src/_build/nomad_pydantic.Lifecycle.html#nomad_pydantic.Lifecycle.sidecar">sidecar (nomad_pydantic.Lifecycle attribute)</a>
 </li>
+      <li><a href="docs/src/_build/nomad_pydantic.TaskEvent.html#nomad_pydantic.TaskEvent.signal">signal (nomad_pydantic.TaskEvent attribute)</a>
+</li>
       <li><a href="docs/src/_build/nomad_pydantic.Volume.html#nomad_pydantic.Volume.source">source (nomad_pydantic.Volume attribute)</a>
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.Template.html#nomad_pydantic.Template.source_path">source_path (nomad_pydantic.Template attribute)</a>
@@ -732,6 +749,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul style="margin-left:0;list-style-type:none">
       <li><a href="docs/src/_build/nomad_pydantic.TaskGroupStatus.html#nomad_pydantic.TaskGroupStatus.starting">starting (nomad_pydantic.TaskGroupStatus attribute)</a>
+</li>
+      <li><a href="docs/src/_build/nomad_pydantic.TaskState.html#nomad_pydantic.TaskState.state">state (nomad_pydantic.TaskState attribute)</a>
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.DeploymentStatus.html#nomad_pydantic.DeploymentStatus.status">status (nomad_pydantic.DeploymentStatus attribute)</a>
 
@@ -772,6 +791,8 @@
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.Job.html#nomad_pydantic.Job.task_groups">task_groups (nomad_pydantic.Job attribute)</a>
 </li>
+      <li><a href="docs/src/_build/nomad_pydantic.AllocationStatus.html#nomad_pydantic.AllocationStatus.task_states">task_states (nomad_pydantic.AllocationStatus attribute)</a>
+</li>
       <li><a href="docs/src/_build/nomad_pydantic.TaskGroup.html#nomad_pydantic.TaskGroup.tasks">tasks (nomad_pydantic.TaskGroup attribute)</a>
 </li>
       <li><a href="docs/src/_build/nomad_pydantic.Task.html#nomad_pydantic.Task.templates">templates (nomad_pydantic.Task attribute)</a>
@@ -794,6 +815,8 @@
 
       <ul style="list-style-type:none">
         <li><a href="docs/src/_build/nomad_pydantic.ServiceCheck.html#nomad_pydantic.ServiceCheck.type">(nomad_pydantic.ServiceCheck attribute)</a>
+</li>
+        <li><a href="docs/src/_build/nomad_pydantic.TaskEvent.html#nomad_pydantic.TaskEvent.type">(nomad_pydantic.TaskEvent attribute)</a>
 </li>
         <li><a href="docs/src/_build/nomad_pydantic.Volume.html#nomad_pydantic.Volume.type">(nomad_pydantic.Volume attribute)</a>
 </li>

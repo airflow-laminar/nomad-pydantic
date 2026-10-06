@@ -45,6 +45,9 @@ The public API is re-exported from `nomad_pydantic`.
    JobSummary
    TaskGroupStatus
    AllocationStatus
+   TaskState
+   TaskEvent
+   LogChunk
    DeploymentStatus
    EvaluationStatus
    CommandResult

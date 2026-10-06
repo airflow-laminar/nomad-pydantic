@@ -8,10 +8,13 @@ from nomad_pydantic.client import (
     EvaluationStatus,
     JobStatus,
     JobSummary,
+    LogChunk,
     NomadClient,
     NomadCommandError,
     SubprocessCommandRunner,
+    TaskEvent,
     TaskGroupStatus,
+    TaskState,
 )
 from nomad_pydantic.config import NomadConfiguration
 from nomad_pydantic.models import (
@@ -49,6 +52,7 @@ __all__ = [
     "JobStatus",
     "JobSummary",
     "Lifecycle",
+    "LogChunk",
     "LogConfig",
     "NetworkPort",
     "NetworkResource",
@@ -64,8 +68,10 @@ __all__ = [
     "ServiceCheck",
     "SubprocessCommandRunner",
     "Task",
+    "TaskEvent",
     "TaskGroup",
     "TaskGroupStatus",
+    "TaskState",
     "Template",
     "UpdateStrategy",
     "Volume",

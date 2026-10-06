@@ -3,9 +3,10 @@ from __future__ import annotations
 import json
 import subprocess
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, ClassVar, Protocol
+from typing import TYPE_CHECKING, Any, ClassVar, Literal, Protocol
+from urllib.parse import quote, urlencode
 
-from pydantic import ConfigDict, Field
+from pydantic import ConfigDict, Field, field_validator
 
 from nomad_pydantic.models import NomadModel
 
@@ -26,8 +27,10 @@ class CommandRunner(Protocol):
 
 class SubprocessCommandRunner:
     def run(self, command: list[str], timeout: float | None = None) -> CommandResult:
-        result = subprocess.run(command, capture_output=True, check=False, text=True, timeout=timeout)
-        return CommandResult(result.returncode, result.stdout, result.stderr)
+        result = subprocess.run(command, capture_output=True, check=False, timeout=timeout)
+        return CommandResult(
+            result.returncode, result.stdout.decode("utf-8", errors="surrogateescape"), result.stderr.decode("utf-8", errors="surrogateescape")
+        )
 
 
 class NomadCommandError(RuntimeError):
@@ -64,6 +67,33 @@ class AllocationStatus(StatusModel):
     task_group: str
     desired_status: str
     client_status: str
+    task_states: dict[str, TaskState] = Field(default_factory=dict)
+
+    @field_validator("task_states", mode="before")
+    @classmethod
+    def empty_task_states(cls, value: Any) -> Any:
+        return value or {}
+
+
+class TaskEvent(StatusModel):
+    type: str
+    display_message: str = ""
+    exit_code: int = 0
+    signal: int = 0
+
+
+class TaskState(StatusModel):
+    state: str
+    failed: bool = False
+    events: list[TaskEvent] = Field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class LogChunk:
+    file: str
+    offset: int
+    data: bytes
+    truncated: bool = False
 
 
 class DeploymentStatus(StatusModel):
@@ -162,6 +192,48 @@ class NomadClient:
     def status(self) -> JobStatus:
         result = self._run(["job", "status", "-json", *self._identity()])
         return JobStatus.from_cli(result.stdout)
+
+    def read_logs(
+        self,
+        allocation_id: str,
+        task: str,
+        stream: Literal["stdout", "stderr"],
+        *,
+        offsets: dict[str, int] | None = None,
+        limit: int = 65536,
+    ) -> list[LogChunk]:
+        """Read at most ``limit`` bytes across retained log files, oldest first.
+
+        Pass each returned file's offset plus data length on the next call.
+        Nomad's ``read-fs`` namespace capability is required.
+        """
+        if limit <= 0:
+            raise ValueError("limit must be positive")
+        if stream not in {"stdout", "stderr"}:
+            raise ValueError("stream must be stdout or stderr")
+        query = {"namespace": self.configuration.job.namespace or "default", "path": "alloc/logs"}
+        allocation = quote(allocation_id, safe="")
+        listing = self._run(["operator", "api", f"/v1/client/fs/ls/{allocation}?{urlencode(query)}"])
+        prefix = f"{task}.{stream}."
+        files = [entry for entry in json.loads(listing.stdout) if entry["Name"].startswith(prefix) and entry["Name"][len(prefix) :].isdigit()]
+        chunks = []
+        for entry in sorted(files, key=lambda entry: int(entry["Name"][len(prefix) :])):
+            name = entry["Name"]
+            offset = (offsets or {}).get(name, 0)
+            truncated = offset > entry["Size"]
+            if truncated:
+                offset = 0
+            size = min(entry["Size"] - offset, limit)
+            if size <= 0:
+                continue
+            params = {**query, "path": f"alloc/logs/{name}", "offset": offset, "limit": size}
+            result = self._run(["operator", "api", f"/v1/client/fs/readat/{allocation}?{urlencode(params)}"])
+            data = result.stdout.encode("utf-8", errors="surrogateescape")
+            chunks.append(LogChunk(name, offset, data, truncated))
+            limit -= len(data)
+            if limit <= 0:
+                break
+        return chunks
 
     def start(self) -> CommandResult:
         return self._run(["job", "start", "-detach", *self._identity()])
